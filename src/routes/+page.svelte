@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { processTelexInput } from '$lib/telex';
+	import { tick } from 'svelte';
 
 	let inputText = $state('');
 	let outputText = $state('');
@@ -41,6 +42,66 @@
 
 			inputText = finalText;
 			handleOutputChange(finalText);
+			return;
+		}
+
+		// Handle Delete key to remove entire composed characters (e.g., á -> "", not á -> a)
+		// This prevents the browser from only removing the combining tone mark
+		if (event.key === 'Delete' || event.key === 'Backspace') {
+			const target = event.target as HTMLInputElement;
+			const cursorPosition = target.selectionStart ?? inputText.length;
+			const cursorEnd = target.selectionEnd ?? cursorPosition;
+
+			// Only handle if there's no text selection (normal delete/backspace behavior)
+			if (cursorPosition === cursorEnd) {
+				event.preventDefault();
+
+				let newText: string;
+				let newCursorPosition: number;
+
+				if (event.key === 'Backspace' && cursorPosition > 0) {
+					// Backspace: delete character before cursor
+					// Find the start of the grapheme cluster before cursor
+					const textBefore = inputText.slice(0, cursorPosition);
+					// Use Intl.Segmenter to properly handle grapheme clusters
+					const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+					const segments = Array.from(segmenter.segment(textBefore));
+					if (segments.length > 0) {
+						const lastSegment = segments[segments.length - 1];
+						newText = inputText.slice(0, lastSegment.index) + inputText.slice(cursorPosition);
+						newCursorPosition = lastSegment.index;
+					} else {
+						newText = inputText;
+						newCursorPosition = cursorPosition;
+					}
+				} else if (event.key === 'Delete' && cursorPosition < inputText.length) {
+					// Delete: delete character at cursor
+					const textAfter = inputText.slice(cursorPosition);
+					const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+					const segments = Array.from(segmenter.segment(textAfter));
+					if (segments.length > 0) {
+						const firstSegment = segments[0];
+						newText =
+							inputText.slice(0, cursorPosition) +
+							inputText.slice(cursorPosition + firstSegment.segment.length);
+						newCursorPosition = cursorPosition;
+					} else {
+						newText = inputText;
+						newCursorPosition = cursorPosition;
+					}
+				} else {
+					return;
+				}
+
+				inputText = newText;
+				handleOutputChange(newText);
+
+				// Restore cursor position after state update
+				tick().then(() => {
+					target.selectionStart = newCursorPosition;
+					target.selectionEnd = newCursorPosition;
+				});
+			}
 		}
 	}
 
