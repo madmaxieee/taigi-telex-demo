@@ -2,7 +2,9 @@
 	"$schema": "https://opencode.ai/config.json",
 	"permission": {
 		"bash": {
-			"npm *": "deny"
+			"npm *": "deny",
+			"git *": "deny",
+			"bun run db*": "ask"
 		}
 	}
 }
