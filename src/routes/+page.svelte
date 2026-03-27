@@ -124,12 +124,12 @@
 	});
 </script>
 
-<div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 md:p-8">
+<div class="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 p-4 md:p-8">
 	<div class="mx-auto max-w-4xl">
 		<!-- Title -->
 		<header class="mb-12 text-center">
 			<h1 class="mb-4 text-4xl font-bold text-slate-800 md:text-5xl lg:text-6xl">
-				<span class="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+				<span class="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
 					Tâi-gí
 				</span>
 				<span class="text-slate-700">Telex Keyboard</span>
@@ -160,7 +160,7 @@
 					bind:value={inputText}
 					onkeydown={handleKeyDown}
 					oninput={handleInputChange}
-					placeholder="Type here... (e.g., savng -> sáng, chitf -> chit-)"
+					placeholder="Type here... (e.g., tair → tâi, tâif → tâi-)"
 					class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-6 py-4 text-xl text-slate-800 placeholder-slate-400 transition-all focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-500/20 focus:outline-none md:text-2xl"
 				/>
 
