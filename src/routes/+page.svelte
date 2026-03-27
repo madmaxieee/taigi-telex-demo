@@ -27,8 +27,9 @@
 
 	function handleKeyDown(event: KeyboardEvent) {
 		// Prevent default behavior for tone keys to handle them manually
+		// But allow native shortcuts like cmd-c, cmd-a, etc. to work
 		const toneKeys = ['v', 'y', 'r', 'w', 'x', 'q', 'z', 'c', 'f'];
-		if (toneKeys.includes(event.key.toLowerCase())) {
+		if (toneKeys.includes(event.key.toLowerCase()) && !event.metaKey && !event.ctrlKey) {
 			event.preventDefault();
 			const newText = inputText + event.key;
 			const processed = processTelexInput(newText);
@@ -150,8 +151,8 @@
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">y</td>
 								<td class="border border-slate-300 px-4 py-3">3rd tone (high falling)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">chay / chy</td>
-								<td class="border border-slate-300 px-4 py-3">chà</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tsay</td>
+								<td class="border border-slate-300 px-4 py-3">tsà</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">r</td>
