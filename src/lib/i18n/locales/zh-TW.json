@@ -1,9 +1,9 @@
 {
 	"title": "Tâi-gí Telex 輸入法",
-	"subtitle": "使用 Tâi-gí Telex 輸入台語（台羅拼音）",
+	"subtitle": "使用 Tâi-gí Telex 輸入台羅",
 	"input": {
 		"label": "試試看：",
-		"placeholder": "在這裡輸入...（例如：tai[r] → tâi, tâi[f] → tâi-）",
+		"placeholder": "在這裡輸入...（例如：tai[d] → tâi, tâi[f] → tâi-）",
 		"copy": "複製",
 		"clear": "清除",
 		"transformed": "轉換結果："
@@ -11,9 +11,11 @@
 	"howItWorks": {
 		"title": "台語 Telex 輸入法說明",
 		"description": "此輸入法使用類似越南 Telex 輸入法的聲調機制來輸入台羅拼音。聲調符號可以放在母音後面或每個音節的結尾。",
+		"additionalKeysDescription": "因為這幾個字母放著不用實在太浪費了，所以我擅自把他們拿來作其他用途。",
 		"table": {
 			"key": "按鍵",
 			"tone": "聲調",
+			"function": "功能",
 			"example": "範例",
 			"result": "結果"
 		},
@@ -23,7 +25,9 @@
 			"5th": "第5聲",
 			"7th": "第7聲",
 			"8th": "第8聲",
-			"9th": "第9聲",
+			"9th": "第9聲"
+		},
+		"functions": {
 			"ts": "子音：ts",
 			"tsh": "子音：tsh",
 			"hyphen": "連字符"

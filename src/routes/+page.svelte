@@ -5,16 +5,19 @@
 	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
 	import ExplanationRow from '$lib/components/ExplanationRow.svelte';
 
-	const tableRows = [
-		{ key: 'v', toneKey: 'howItWorks.tones.2nd', example: 'tev', result: 'té' },
-		{ key: 'y', toneKey: 'howItWorks.tones.3rd', example: 'khooy', result: 'khòo' },
-		{ key: 'd', toneKey: 'howItWorks.tones.5th', example: 'langd / ladng', result: 'lâng' },
-		{ key: 'w', toneKey: 'howItWorks.tones.7th', example: 'phiwnn / phinnw', result: 'phīnn' },
-		{ key: 'x', toneKey: 'howItWorks.tones.8th', example: 'tixt / titx', result: 'ti̍t' },
-		{ key: 'q', toneKey: 'howItWorks.tones.9th', example: 'tsaqng / tsangq', result: 'tsa̋ng' },
-		{ key: 'z', toneKey: 'howItWorks.tones.ts', example: 'zo', result: 'tso' },
-		{ key: 'c', toneKey: 'howItWorks.tones.tsh', example: 'ci', result: 'tshi' },
-		{ key: 'f', toneKey: 'howItWorks.tones.hyphen', example: 'tai', result: 'tai-' }
+	const toneRows = [
+		{ key: 'v', labelKey: 'howItWorks.tones.2nd', example: 'tev', result: 'té' },
+		{ key: 'y', labelKey: 'howItWorks.tones.3rd', example: 'khooy', result: 'khòo' },
+		{ key: 'd', labelKey: 'howItWorks.tones.5th', example: 'langd / ladng', result: 'lâng' },
+		{ key: 'w', labelKey: 'howItWorks.tones.7th', example: 'phiwnn / phinnw', result: 'phīnn' },
+		{ key: 'x', labelKey: 'howItWorks.tones.8th', example: 'tixt / titx', result: 'ti̍t' },
+		{ key: 'q', labelKey: 'howItWorks.tones.9th', example: 'tsaqng / tsangq', result: 'tsa̋ng' }
+	];
+
+	const otherRows = [
+		{ key: 'z', labelKey: 'howItWorks.functions.ts', example: 'zo', result: 'tso' },
+		{ key: 'c', labelKey: 'howItWorks.functions.tsh', example: 'ci', result: 'tshi' },
+		{ key: 'f', labelKey: 'howItWorks.functions.hyphen', example: 'taif', result: 'tai-' }
 	];
 
 	let inputText = $state('');
@@ -246,10 +249,45 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each tableRows as row (row.key)}
+							{#each toneRows as row (row.key)}
 								<ExplanationRow
 									key={row.key}
-									tone={$_(row.toneKey)}
+									tone={$_(row.labelKey)}
+									example={row.example}
+									result={row.result}
+								/>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+
+				<p class="text-base leading-relaxed md:text-lg">
+					{$_('howItWorks.additionalKeysDescription')}
+				</p>
+
+				<div class="mt-8 overflow-x-auto">
+					<table class="w-full border-collapse">
+						<thead>
+							<tr class="bg-slate-100">
+								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+									>{$_('howItWorks.table.key')}</th
+								>
+								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+									>{$_('howItWorks.table.function')}</th
+								>
+								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+									>{$_('howItWorks.table.example')}</th
+								>
+								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+									>{$_('howItWorks.table.result')}</th
+								>
+							</tr>
+						</thead>
+						<tbody>
+							{#each otherRows as row (row.key)}
+								<ExplanationRow
+									key={row.key}
+									tone={$_(row.labelKey)}
 									example={row.example}
 									result={row.result}
 								/>

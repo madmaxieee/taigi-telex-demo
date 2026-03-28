@@ -1,9 +1,9 @@
 {
 	"title": "Tâi-gí Telex Keyboard",
-	"subtitle": "Type Taiwanese using Telex-style input for Tâi-lô romanization",
+	"subtitle": "Type Tâi-lô with Tâi-gí Telex input method",
 	"input": {
 		"label": "Try it out:",
-		"placeholder": "Type here... (e.g., tai[r] → tâi, tâi[f] → tâi-)",
+		"placeholder": "Type here... (e.g., tai[d] → tâi, tâi[f] → tâi-)",
 		"copy": "Copy",
 		"clear": "Clear",
 		"transformed": "Transformed:"
@@ -11,9 +11,11 @@
 	"howItWorks": {
 		"title": "How Taiwanese Telex Works",
 		"description": "This input method uses Vienameese Telex-style mechanism to type Tâi-lô's tones. Tonal marks can be placed either right after the vowel or at the end of each syllable.",
+		"additionalKeysDescription": "Since these letters would go unused otherwise, I've repurposed them for additional functions.",
 		"table": {
 			"key": "Key",
 			"tone": "Tone",
+			"function": "Function",
 			"example": "Example",
 			"result": "Result"
 		},
@@ -23,7 +25,9 @@
 			"5th": "5th tone",
 			"7th": "7th tone",
 			"8th": "8th tone",
-			"9th": "9th tone",
+			"9th": "9th tone"
+		},
+		"functions": {
 			"ts": "Consonant: ts",
 			"tsh": "Consonant: tsh",
 			"hyphen": "Hyphen"
