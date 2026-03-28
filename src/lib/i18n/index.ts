@@ -16,9 +16,20 @@ function getStoredLocale(): string | null {
 	return localStorage.getItem(STORAGE_KEY);
 }
 
+function normalizeLocale(locale: string): string {
+	// Map browser locales to our supported codes
+	if (locale.startsWith('zh')) return 'zh-TW';
+	if (locale.startsWith('en')) return 'en';
+	if (locale.startsWith('nan') || locale.includes('TW') || locale.includes('tw')) return 'nan';
+	return 'zh-TW'; // Default fallback
+}
+
 function getInitialLocale(): string {
 	if (browser) {
-		return getStoredLocale() || getLocaleFromNavigator() || 'zh-TW';
+		const stored = getStoredLocale();
+		if (stored) return stored;
+		const navigatorLocale = getLocaleFromNavigator();
+		if (navigatorLocale) return normalizeLocale(navigatorLocale);
 	}
 	return 'zh-TW';
 }
