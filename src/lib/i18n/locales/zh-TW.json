@@ -29,16 +29,6 @@
 			"hyphen": "連字符"
 		}
 	},
-	"rules": {
-		"title": "聲調位置規則",
-		"vowelPriority": "母音優先順序：",
-		"ooVowel": "\"oo\" 母音：",
-		"ooVowelDesc": "符號標在第一個 o 上（例如：oov → óo）",
-		"ng": "\"ng\"：",
-		"ngDesc": "符號標在 n 上，不是 g",
-		"standalone": "獨立的 ng/m：",
-		"standaloneDesc": "當沒有其他母音時，也可以標聲調符號"
-	},
 	"examples": {
 		"title": "範例",
 		"items": [

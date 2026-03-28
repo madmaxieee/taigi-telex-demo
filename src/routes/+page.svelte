@@ -257,25 +257,6 @@
 						</tbody>
 					</table>
 				</div>
-
-				<div class="rounded-xl bg-teal-50 p-6">
-					<h3 class="mb-3 text-lg font-semibold text-teal-800">{$_('rules.title')}</h3>
-					<p class="mb-2 text-teal-700">
-						<strong>{$_('rules.vowelPriority')}</strong> a > e > u > i > o
-					</p>
-					<p class="mb-2 text-teal-700">
-						<strong>{$_('rules.ooVowel')}</strong>
-						{$_('rules.ooVowelDesc')}
-					</p>
-					<p class="mb-2 text-teal-700">
-						<strong>{$_('rules.ng')}</strong>
-						{$_('rules.ngDesc')}
-					</p>
-					<p class="text-teal-700">
-						<strong>{$_('rules.standalone')}</strong>
-						{$_('rules.standaloneDesc')}
-					</p>
-				</div>
 			</div>
 		</section>
 

@@ -29,16 +29,6 @@
 			"hyphen": "Liân-jī-hû"
 		}
 	},
-	"rules": {
-		"title": "Sian-tiâu ūi-tì Koe-chhek",
-		"vowelPriority": "Bó-im iu-sian sūn-sī:",
-		"ooVowel": "\"oo\" bó-im:",
-		"ooVowelDesc": "hû-hō phiau tī tē-it ê o téng (pí-jû: oov → óo)",
-		"ng": "\"ng\":",
-		"ngDesc": "hû-hō phiau tī n téng, m̄-sī g",
-		"standalone": "To̍k-li̍p ê ng/m:",
-		"standaloneDesc": "Tong bô kî-thaⁿ bó-im ê sî-chūn, mā ē-sái phiau sian-tiâu hû-hō"
-	},
 	"examples": {
 		"title": "Lē-tê",
 		"items": [

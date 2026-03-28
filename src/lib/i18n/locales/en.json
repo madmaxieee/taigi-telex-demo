@@ -29,16 +29,6 @@
 			"hyphen": "Hyphen"
 		}
 	},
-	"rules": {
-		"title": "Tone Position Rules",
-		"vowelPriority": "Vowel priority:",
-		"ooVowel": "For \"oo\" vowel:",
-		"ooVowelDesc": "mark goes on the first o (e.g., oov → óo)",
-		"ng": "For \"ng\":",
-		"ngDesc": "mark goes on n, not g",
-		"standalone": "Standalone ng/m:",
-		"standaloneDesc": "Can take tone marks when no other vowels are present"
-	},
 	"examples": {
 		"title": "Examples",
 		"items": [
