@@ -3,6 +3,19 @@
 	import { tick } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
+	import ExplanationRow from '$lib/components/ExplanationRow.svelte';
+
+	const tableRows = [
+		{ key: 'v', toneKey: 'howItWorks.tones.2nd', example: 'tev', result: 'té' },
+		{ key: 'y', toneKey: 'howItWorks.tones.3rd', example: 'khooy', result: 'khòo' },
+		{ key: 'r', toneKey: 'howItWorks.tones.5th', example: 'langr / larng', result: 'lâng' },
+		{ key: 'w', toneKey: 'howItWorks.tones.7th', example: 'phiwnn / phinnw', result: 'phīnn' },
+		{ key: 'x', toneKey: 'howItWorks.tones.8th', example: 'tixt / titx', result: 'ti̍t' },
+		{ key: 'q', toneKey: 'howItWorks.tones.9th', example: 'tsaqng / tsangq', result: 'tsa̋ng' },
+		{ key: 'z', toneKey: 'howItWorks.tones.ts', example: 'zo', result: 'tso' },
+		{ key: 'c', toneKey: 'howItWorks.tones.tsh', example: 'ci', result: 'tshi' },
+		{ key: 'f', toneKey: 'howItWorks.tones.hyphen', example: 'tai', result: 'tai-' }
+	];
 
 	let inputText = $state('');
 	let outputText = $state('');
@@ -233,60 +246,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">v</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.2nd')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tev</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">té</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">y</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.3rd')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">khooy</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">khòo</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">r</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.5th')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">langr / larng</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">lâng</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">w</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.7th')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">phiwnn / phinnw</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">phīnn</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">x</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.8th')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tixt / titx</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">ti̍t</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">q</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.9th')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tsaqng / tsangq</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tsa̋ng</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">z</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.ts')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">zo</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tso</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">c</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.tsh')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">ci</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tshi</td>
-							</tr>
-							<tr class="bg-white hover:bg-slate-50">
-								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">f</td>
-								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.hyphen')}</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tai</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tai-</td>
-							</tr>
+							{#each tableRows as row (row.key)}
+								<ExplanationRow
+									key={row.key}
+									tone={$_(row.toneKey)}
+									example={row.example}
+									result={row.result}
+								/>
+							{/each}
 						</tbody>
 					</table>
 				</div>
