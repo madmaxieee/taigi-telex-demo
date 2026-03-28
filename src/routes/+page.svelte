@@ -309,20 +309,6 @@
 						{$_('rules.standaloneDesc')}
 					</p>
 				</div>
-
-				<div class="rounded-xl bg-slate-50 p-6">
-					<h3 class="mb-3 text-lg font-semibold text-slate-800">{$_('examples.title')}</h3>
-					<ul class="space-y-2 text-slate-700">
-						<li>
-							<span class="font-mono text-teal-600">savng</span> /
-							<span class="font-mono text-teal-600">sangv</span> → sáng
-						</li>
-						<li><span class="font-mono text-teal-600">chitf</span> → chit-</li>
-						<li><span class="font-mono text-teal-600">zo</span> → tso</li>
-						<li><span class="font-mono text-teal-600">ci</span> → tshi</li>
-						<li><span class="font-mono text-teal-600">oov</span> → óo</li>
-					</ul>
-				</div>
 			</div>
 		</section>
 
