@@ -232,39 +232,39 @@
 						<tbody>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">v</td>
-								<td class="border border-slate-300 px-4 py-3">2nd tone (high rising)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">savng / sangv</td>
-								<td class="border border-slate-300 px-4 py-3">sáng</td>
+								<td class="border border-slate-300 px-4 py-3">2nd tone</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tev</td>
+								<td class="border border-slate-300 px-4 py-3">té</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">y</td>
-								<td class="border border-slate-300 px-4 py-3">3rd tone (high falling)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">tsay</td>
-								<td class="border border-slate-300 px-4 py-3">tsà</td>
+								<td class="border border-slate-300 px-4 py-3">3rd tone</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">khooy</td>
+								<td class="border border-slate-300 px-4 py-3">khòo</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">r</td>
-								<td class="border border-slate-300 px-4 py-3">5th tone (low rising)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">kar / kra</td>
-								<td class="border border-slate-300 px-4 py-3">kâ</td>
+								<td class="border border-slate-300 px-4 py-3">5th tone</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">langr / larng</td>
+								<td class="border border-slate-300 px-4 py-3">lâng</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">w</td>
-								<td class="border border-slate-300 px-4 py-3">7th tone (low falling)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">saw / sw</td>
-								<td class="border border-slate-300 px-4 py-3">sā</td>
+								<td class="border border-slate-300 px-4 py-3">7th tone</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">phiwnn / phinnw</td>
+								<td class="border border-slate-300 px-4 py-3">phīnn</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">x</td>
-								<td class="border border-slate-300 px-4 py-3">8th tone (low checked)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">sax / sx</td>
-								<td class="border border-slate-300 px-4 py-3">sa̍</td>
+								<td class="border border-slate-300 px-4 py-3">8th tone</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tixt / titx</td>
+								<td class="border border-slate-300 px-4 py-3">ti̍t</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">q</td>
-								<td class="border border-slate-300 px-4 py-3">9th tone (high checked)</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">saq / sq</td>
-								<td class="border border-slate-300 px-4 py-3">sa̋</td>
+								<td class="border border-slate-300 px-4 py-3">9th tone</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tsaqng / tsangq</td>
+								<td class="border border-slate-300 px-4 py-3">tsa̋ng</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">z</td>
@@ -281,8 +281,8 @@
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">f</td>
 								<td class="border border-slate-300 px-4 py-3">Hyphen</td>
-								<td class="border border-slate-300 px-4 py-3 font-mono">chitf</td>
-								<td class="border border-slate-300 px-4 py-3">chit-</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tai</td>
+								<td class="border border-slate-300 px-4 py-3">tai-</td>
 							</tr>
 						</tbody>
 					</table>
