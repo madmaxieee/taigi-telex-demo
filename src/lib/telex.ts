@@ -5,7 +5,7 @@
 const TONE_MARKS: Record<string, string> = {
 	v: '\u0301', // combining acute (2nd tone)
 	y: '\u0300', // combining grave (3rd tone)
-	r: '\u0302', // combining circumflex (5th tone)
+	d: '\u0302', // combining circumflex (5th tone)
 	w: '\u0304', // combining macron (7th tone)
 	x: '\u030D', // combining vertical line (8th tone)
 	q: '\u030B' // combining double acute (9th tone)

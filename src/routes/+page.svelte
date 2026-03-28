@@ -8,7 +8,7 @@
 	const tableRows = [
 		{ key: 'v', toneKey: 'howItWorks.tones.2nd', example: 'tev', result: 'té' },
 		{ key: 'y', toneKey: 'howItWorks.tones.3rd', example: 'khooy', result: 'khòo' },
-		{ key: 'r', toneKey: 'howItWorks.tones.5th', example: 'langr / larng', result: 'lâng' },
+		{ key: 'd', toneKey: 'howItWorks.tones.5th', example: 'langd / ladng', result: 'lâng' },
 		{ key: 'w', toneKey: 'howItWorks.tones.7th', example: 'phiwnn / phinnw', result: 'phīnn' },
 		{ key: 'x', toneKey: 'howItWorks.tones.8th', example: 'tixt / titx', result: 'ti̍t' },
 		{ key: 'q', toneKey: 'howItWorks.tones.9th', example: 'tsaqng / tsangq', result: 'tsa̋ng' },
@@ -44,7 +44,7 @@
 	function handleKeyDown(event: KeyboardEvent) {
 		// Prevent default behavior for tone keys to handle them manually
 		// But allow native shortcuts like cmd-c, cmd-a, etc. to work
-		const toneKeys = ['v', 'y', 'r', 'w', 'x', 'q', 'z', 'c', 'f'];
+		const toneKeys = ['v', 'y', 'd', 'w', 'x', 'q', 'z', 'c', 'f'];
 		if (toneKeys.includes(event.key.toLowerCase()) && !event.metaKey && !event.ctrlKey) {
 			event.preventDefault();
 			const newText = inputText + event.key;
@@ -165,7 +165,7 @@
 				<LanguageSelector />
 			</div>
 			<h1 class="mb-4 text-4xl font-bold text-slate-800 md:text-5xl lg:text-6xl">
-				<span class="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+				<span class="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text pb-1 text-transparent">
 					Tâi-gí
 				</span>
 				<span class="text-slate-700">{$_('title').split(' ').slice(1).join(' ')}</span>
