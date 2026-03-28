@@ -1,6 +1,6 @@
 # Agent Instructions for taigi-telex-demo
 
-This is a Svelte 5 + TypeScript project for Taiwanese Telex input method.
+This is a Svelte 5 + TypeScript project for Taiwanese Telex input method (Tâi-lô romanization).
 
 ## Build Commands
 
@@ -8,10 +8,10 @@ This is a Svelte 5 + TypeScript project for Taiwanese Telex input method.
 # Development server
 bun run dev
 
-# Build for production
+# Build for production (static site)
 bun run build
 
-# Preview production build (uses Wrangler)
+# Preview production build
 bun run preview
 
 # Type checking
@@ -29,26 +29,7 @@ bun run lint
 bun run format
 ```
 
-**Note:** This project does not have a test framework configured yet. If adding tests, use Vitest with `@testing-library/svelte` and run single tests with `vitest run -t "test name pattern"`.
-
-## Database Commands (Drizzle ORM)
-
-```bash
-# Push schema changes to database
-bun run db:push
-
-# Generate migration files
-bun run db:generate
-
-# Run migrations
-bun run db:migrate
-
-# Open Drizzle Studio
-bun run db:studio
-
-# Generate Wrangler types
-bun run gen
-```
+**Note:** This project does not have a test framework configured yet.
 
 ## Code Style Guidelines
 
@@ -65,7 +46,7 @@ bun run gen
 - **Strict mode:** Enabled
 - **Import style:** ES modules (`"type": "module"`)
 - **File extensions:** Use `.ts` for scripts, `.svelte` for components
-- **Relative imports:** Rewrite extensions enabled
+- **Relative imports:** `rewriteRelativeImportExtensions` enabled in tsconfig
 
 ### Naming Conventions
 
@@ -73,20 +54,20 @@ bun run gen
 - **Components:** PascalCase (Svelte files)
 - **Constants:** UPPER_SNAKE_CASE for true constants
 - **Types/Interfaces:** PascalCase
-- **Database tables:** snake_case (Drizzle convention)
 
 ### Import Patterns
 
 ```typescript
 // Svelte imports
-import { $state, $effect, $props } from 'svelte';
+import { $state, $effect, tick } from 'svelte';
+import { _ } from 'svelte-i18n';
+import { browser } from '$app/environment';
 
 // Library imports (use $lib alias)
-import { myUtil } from '$lib/myUtil';
-import { db } from '$lib/server/db';
+import { processTelexInput } from '$lib/telex';
+import { setStoredLocale } from '$lib/i18n';
 
 // Node built-ins
-import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 ```
 
@@ -107,7 +88,7 @@ import path from 'node:path';
 ### Linting Rules
 
 - ESLint + TypeScript ESLint + Svelte plugin
-- Prettier integration (conflicts resolved)
+- Prettier integration (conflicts resolved via eslint-config-prettier)
 - `no-undef` is disabled (TypeScript handles this)
 - Ignores paths from `.gitignore`
 
@@ -116,65 +97,52 @@ import path from 'node:path';
 ```
 src/
   lib/
-    server/          # Server-only code (db, API)
-    index.ts         # Public exports
+    components/      # Svelte components
+    i18n/           # Internationalization (svelte-i18n)
+      locales/      # Translation files (en.json, zh-TW.json, nan.json)
+      index.ts      # i18n initialization
+    telex.ts        # Telex transformation logic
+    index.ts        # Public exports
   routes/
-    +page.svelte     # Pages
-    +layout.svelte   # Layouts
-    layout.css       # Global styles
+    +page.svelte    # Main page
+    +layout.svelte  # Root layout
+    layout.css      # Global styles (Tailwind entry)
 ```
-
-### Database (Drizzle)
-
-- Use `sqliteTable` for table definitions
-- Use `text()`, `integer()` column types
-- Default UUIDs: `.$defaultFn(() => crypto.randomUUID())`
-- Export schemas from `src/lib/server/db/schema.ts`
 
 ### CSS/Tailwind
 
-- Tailwind classes follow plugin sorting
+- Tailwind CSS 4.x with Vite plugin
+- Tailwind Typography plugin for prose content
 - Custom styles in `src/routes/layout.css`
-- Use arbitrary values sparingly: `bg-slate-50`
+- Use arbitrary values sparingly: `bg-slate-50`, `text-teal-600`
+
+### Internationalization (i18n)
+
+- Uses `svelte-i18n` library
+- Three locales: `zh-TW` (Chinese), `en` (English), `nan` (Taiwanese)
+- Store preference in localStorage
+- Use `$_('key')` for translations in templates
 
 ## Tech Stack
 
 - **Framework:** SvelteKit 2.x (Svelte 5 runes mode)
-- **Adapter:** Cloudflare Workers
-- **Database:** Drizzle ORM + Cloudflare D1
+- **Adapter:** @sveltejs/adapter-static (static site generation)
 - **Styling:** Tailwind CSS 4.x + Typography plugin
 - **Build:** Vite 7.x
 - **Runtime:** Bun (preferred) or Node
+- **i18n:** svelte-i18n
 
 ## Deployment
 
-- Production builds target Cloudflare Workers
-- Database: Cloudflare D1
-- Run `bun run build` then deploy via Wrangler
+- Production builds are static sites output to `build/` directory
+- No server-side rendering or API routes
+- Deploy to any static hosting (CDN, GitHub Pages, etc.)
 
 ## Version Control (Jujutsu/jj)
 
 This repository uses **Jujutsu (jj)** for version control, not Git.
 
 **IMPORTANT: Only use READONLY jj commands. Do NOT create new revisions, amend, or push - this is the user's responsibility.**
-
-```bash
-# View repository status
-jj status
-
-# View current change/revision
-jj show
-
-# View log (readonly)
-jj log
-jj log -r '@'
-
-# View diff (readonly)
-jj diff
-
-# Identify files
-jj identify
-```
 
 ### Allowed Commands (READONLY only)
 
@@ -197,6 +165,5 @@ jj identify
 - Always run `bun run check` after TypeScript changes
 - Run `bun run lint` before committing
 - Svelte 5 syntax differs from Svelte 4 (no `export let`, use `$props()`)
-- Database changes require `bun run db:push` or migrations
-- Wrangler types are auto-generated via `bun run gen`
+- Telex logic handles Taiwanese romanization with tone marks
 - **Use jj instead of git for VCS operations (readonly commands only)**
