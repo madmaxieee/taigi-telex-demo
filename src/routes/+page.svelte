@@ -160,7 +160,7 @@
 	});
 </script>
 
-<div class="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 p-4 md:p-8">
+<div class="min-h-screen bg-slate-50 p-4 md:p-8">
 	<div class="mx-auto max-w-4xl">
 		<!-- Title -->
 		<header class="mb-12 text-center">
@@ -168,9 +168,7 @@
 				<LanguageSelector />
 			</div>
 			<h1 class="mb-4 text-4xl font-bold text-slate-800 md:text-5xl lg:text-6xl">
-				<span class="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text pb-1 text-transparent">
-					Tâi-gí
-				</span>
+				<span class="text-teal-600"> Tâi-gí </span>
 				<span class="text-slate-700">{$_('title').split(' ').slice(1).join(' ')}</span>
 			</h1>
 			<p class="text-lg text-slate-600 md:text-xl">
@@ -301,6 +299,14 @@
 		<!-- Footer -->
 		<footer class="mt-12 text-center text-sm text-slate-500">
 			<p>{$_('footer')}</p>
+			<p class="mt-2">
+				<a
+					href="mailto:feedback@telex.kahiok.com?subject=feedback"
+					class="text-teal-600 hover:text-teal-700 hover:underline"
+				>
+					feedback@telex.kahiok.com
+				</a>
+			</p>
 		</footer>
 	</div>
 </div>
