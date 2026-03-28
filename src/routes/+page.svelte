@@ -120,6 +120,18 @@
 		outputText = '';
 	}
 
+	async function copyText() {
+		const textToCopy = outputText || inputText;
+		if (!textToCopy) return;
+
+		try {
+			await navigator.clipboard.writeText(textToCopy);
+			console.log('Text copied:', textToCopy);
+		} catch (err) {
+			console.error('Failed to copy text:', err);
+		}
+	}
+
 	// Reactive statement to process text when input changes
 	$effect(() => {
 		if (inputText) {
@@ -152,12 +164,21 @@
 					<label for="telex-input" class="text-lg font-semibold text-slate-700">
 						Try it out:
 					</label>
-					<button
-						onclick={clearText}
-						class="rounded-lg bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-300 focus:ring-2 focus:ring-slate-400 focus:outline-none"
-					>
-						Clear
-					</button>
+					<div class="flex gap-2">
+						<button
+							onclick={copyText}
+							disabled={!inputText && !outputText}
+							class="rounded-lg bg-teal-100 px-4 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-200 focus:ring-2 focus:ring-teal-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+						>
+							Copy
+						</button>
+						<button
+							onclick={clearText}
+							class="rounded-lg bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-300 focus:ring-2 focus:ring-slate-400 focus:outline-none"
+						>
+							Clear
+						</button>
+					</div>
 				</div>
 
 				<input
