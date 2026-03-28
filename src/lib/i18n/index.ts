@@ -3,9 +3,9 @@ import { browser } from '$app/environment';
 
 // Available languages
 export const languages = [
-	{ code: 'zh-TW', label: '中', name: '繁體中文' },
+	{ code: 'zh-TW', label: '華', name: '華語' },
 	{ code: 'en', label: 'en', name: 'English' },
-	{ code: 'nan', label: 'Tâi-gí', name: 'Tâi-gí' }
+	{ code: 'nan', label: '臺', name: '臺語' }
 ];
 
 // Store locale preference

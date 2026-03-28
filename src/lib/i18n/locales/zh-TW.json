@@ -1,6 +1,6 @@
 {
 	"title": "Tâi-gí Telex 輸入法",
-	"subtitle": "使用 Telex 風格輸入台灣閩南語（台羅拼音）",
+	"subtitle": "使用 Telex 風格輸入台語（台羅拼音）",
 	"input": {
 		"label": "試試看：",
 		"placeholder": "在這裡輸入...（例如：tair → taî，taîf → taî-）",
@@ -9,8 +9,8 @@
 		"transformed": "轉換結果："
 	},
 	"howItWorks": {
-		"title": "台灣閩南語 Telex 輸入法說明",
-		"description": "此輸入法使用 Telex 風格的按鍵來輸入台灣閩南語（台羅拼音）。聲調符號可以放在母音後面（行內）或每個音節的結尾。",
+		"title": "台語 Telex 輸入法說明",
+		"description": "此輸入法使用 Telex 風格的按鍵來輸入台語（台羅拼音）。聲調符號可以放在母音後面（行內）或每個音節的結尾。",
 		"table": {
 			"key": "按鍵",
 			"tone": "聲調",
@@ -39,7 +39,7 @@
 			{ "input": "oov", "output": "óo" }
 		]
 	},
-	"footer": "台灣閩南語（台羅拼音）Telex 輸入法",
+	"footer": "台語（台羅拼音）Telex 輸入法",
 	"language": {
 		"select": "選擇語言"
 	}
