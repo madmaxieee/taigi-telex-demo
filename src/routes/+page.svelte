@@ -47,7 +47,13 @@
 
 		// Handle Delete key to remove entire composed characters (e.g., á -> "", not á -> a)
 		// This prevents the browser from only removing the combining tone mark
-		if (event.key === 'Delete' || event.key === 'Backspace') {
+		// Allow native shortcuts (cmd+delete, alt+delete, etc.) to work normally
+		if (
+			(event.key === 'Delete' || event.key === 'Backspace') &&
+			!event.metaKey &&
+			!event.ctrlKey &&
+			!event.altKey
+		) {
 			const target = event.target as HTMLInputElement;
 			const cursorPosition = target.selectionStart ?? inputText.length;
 			const cursorEnd = target.selectionEnd ?? cursorPosition;
