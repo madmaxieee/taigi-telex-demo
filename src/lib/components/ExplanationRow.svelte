@@ -10,8 +10,8 @@
 </script>
 
 <tr class="bg-white">
-	<td class="border border-slate-300 px-4 py-3 font-mono font-medium">{key}</td>
+	<td class="border border-slate-300 px-4 py-3 font-medium">{key}</td>
 	<td class="border border-slate-300 px-4 py-3">{tone}</td>
-	<td class="border border-slate-300 px-4 py-3 font-mono">{example}</td>
-	<td class="border border-slate-300 px-4 py-3 font-mono">{result}</td>
+	<td class="border border-slate-300 px-4 py-3">{example}</td>
+	<td class="border border-slate-300 px-4 py-3">{result}</td>
 </tr>
