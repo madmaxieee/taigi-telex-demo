@@ -1,0 +1,56 @@
+{
+	"title": "Tâi-gí Telex Keyboard",
+	"subtitle": "Type Taiwanese Hokkien using Telex-style input for Tâi-lô romanization",
+	"input": {
+		"label": "Try it out:",
+		"placeholder": "Type here... (e.g., tair → taî, taîf → taî-)",
+		"copy": "Copy",
+		"clear": "Clear",
+		"transformed": "Transformed:"
+	},
+	"howItWorks": {
+		"title": "How Taiwanese Telex Works",
+		"description": "This input method uses Telex-style keystrokes to type Taiwanese Hokkien (Tâi-lô) romanization. Tonal marks can be placed either inline (right after the vowel) or at the end of each syllable.",
+		"table": {
+			"key": "Key",
+			"tone": "Tone",
+			"example": "Example",
+			"result": "Result"
+		},
+		"tones": {
+			"2nd": "2nd tone",
+			"3rd": "3rd tone",
+			"5th": "5th tone",
+			"7th": "7th tone",
+			"8th": "8th tone",
+			"9th": "9th tone",
+			"ts": "Consonant: ts",
+			"tsh": "Consonant: tsh",
+			"hyphen": "Hyphen"
+		}
+	},
+	"rules": {
+		"title": "Tone Position Rules",
+		"vowelPriority": "Vowel priority:",
+		"ooVowel": "For \"oo\" vowel:",
+		"ooVowelDesc": "mark goes on the first o (e.g., oov → óo)",
+		"ng": "For \"ng\":",
+		"ngDesc": "mark goes on n, not g",
+		"standalone": "Standalone ng/m:",
+		"standaloneDesc": "Can take tone marks when no other vowels are present"
+	},
+	"examples": {
+		"title": "Examples",
+		"items": [
+			{ "input": "savng", "alt": "sangv", "output": "sáng" },
+			{ "input": "chitf", "output": "chit-" },
+			{ "input": "zo", "output": "tso" },
+			{ "input": "ci", "output": "tshi" },
+			{ "input": "oov", "output": "óo" }
+		]
+	},
+	"footer": "Taiwanese Hokkien (Tâi-lô) Telex Input Method",
+	"language": {
+		"select": "Select language"
+	}
+}

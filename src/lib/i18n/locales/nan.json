@@ -1,0 +1,56 @@
+{
+	"title": "Tâi-gí Telex Ji̍p-huat",
+	"subtitle": "Sú-iōng Telex hong-keh ji̍p ji̍t Tâi-oân Bân-lâm-gí (Tâi-lô pheng-im)",
+	"input": {
+		"label": "Chhì chhì khòaⁿ:",
+		"placeholder": "Tī chia ji̍p... (pí-jû: tair → taî, taîf → taî-)",
+		"copy": "Copy",
+		"clear": "Chhú-tiāu",
+		"transformed": "Choán-oān kiat-kó:"
+	},
+	"howItWorks": {
+		"title": "Tâi-gí Telex Ji̍p-hoat Só͘-bêng",
+		"description": "Chit ê ji̍p-hoat sú-iōng Telex hong-keh ê khí-phiat lâi ji̍p ji̍t Tâi-oân Bân-lâm-gí (Tâi-lô pheng-im). Sian-tiâu hû-hō ē-sái hòng tī bó-im āu-bīn (hâng-lāi) a̍h-sī múi ê im-chat ê kiat-bóe.",
+		"table": {
+			"key": "Khí-phiat",
+			"tone": "Sian-tiâu",
+			"example": "Lē",
+			"result": "Kiat-kó"
+		},
+		"tones": {
+			"2nd": "Tē-2 siaⁿ",
+			"3rd": "Tē-3 siaⁿ",
+			"5th": "Tē-5 siaⁿ",
+			"7th": "Tē-7 siaⁿ",
+			"8th": "Tē-8 siaⁿ",
+			"9th": "Tē-9 siaⁿ",
+			"ts": "Chú-im: ts",
+			"tsh": "Chú-im: tsh",
+			"hyphen": "Liân-jī-hû"
+		}
+	},
+	"rules": {
+		"title": "Sian-tiâu ūi-tì Koe-chhek",
+		"vowelPriority": "Bó-im iu-sian sūn-sī:",
+		"ooVowel": "\"oo\" bó-im:",
+		"ooVowelDesc": "hû-hō phiau tī tē-it ê o téng (pí-jû: oov → óo)",
+		"ng": "\"ng\":",
+		"ngDesc": "hû-hō phiau tī n téng, m̄-sī g",
+		"standalone": "To̍k-li̍p ê ng/m:",
+		"standaloneDesc": "Tong bô kî-thaⁿ bó-im ê sî-chūn, mā ē-sái phiau sian-tiâu hû-hō"
+	},
+	"examples": {
+		"title": "Lē-tê",
+		"items": [
+			{ "input": "savng", "alt": "sangv", "output": "sáng" },
+			{ "input": "chitf", "output": "chit-" },
+			{ "input": "zo", "output": "tso" },
+			{ "input": "ci", "output": "tshi" },
+			{ "input": "oov", "output": "óo" }
+		]
+	},
+	"footer": "Tâi-oân Bân-lâm-gí (Tâi-lô pheng-im) Telex Ji̍p-hoat",
+	"language": {
+		"select": "Soán-te̍k gí-giân"
+	}
+}
