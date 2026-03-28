@@ -6,8 +6,6 @@ Sú-iōng Tâi-gí Telex su-ji̍p-huat lâi phah Tâi-lô phing-im ê sòo-tuān
 
 🔗 **Suànn-tíng thé-giām：** https://telex.kahiok.com
 
----
-
 ## Suat-bîng
 
 Tsit ê su-ji̍p-huat sú-iōng Ua̍t-lâm Telex su-ji̍p-huat ê hong-sik lâi tsú Tâi-lô phing-im ê siann-tiāu. Siann-tiāu hû-hō ē-sái tuì tī guân-im āu-piah a̍h-sī kui-ê im-tsat ê kiat-búe.
@@ -41,12 +39,8 @@ In-uī tsit kuí-ê jī-bó bô iōng sit-tsāi siūnn thó-tsè, sóo-í guá k
 - Phah `khooy` → hián-sī `khòo`
 - Phah `langd` a̍h-sī `ladng` → hián-sī `lâng`
 
----
-
 ## I-kiàn hôe-hok
 
 Nā ū jīm-hô būn-tê a̍h-sī kiàn-gī, tsiann liân-lo̍k <feedback@telex.kahiok.com>
-
----
 
 _Tâi-gí Telex Su-ji̍p-huat_

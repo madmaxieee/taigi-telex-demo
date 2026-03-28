@@ -6,8 +6,6 @@ An online tool for typing Tâi-lô (Taiwanese Romanization) using the Tâi-gí T
 
 🔗 **Live Demo:** https://telex.kahiok.com
 
----
-
 ## How It Works
 
 This input method uses a Vietnamese Telex-style mechanism to type Tâi-lô's tones. Tonal marks can be placed either right after the vowel or at the end of each syllable.
@@ -41,12 +39,8 @@ Since these letters would go unused otherwise, I've repurposed them for addition
 - Type `khooy` → Shows `khòo`
 - Type `langd` or `ladng` → Shows `lâng`
 
----
-
 ## Feedback
 
 If you have any questions or suggestions, please email: <feedback@telex.kahiok.com>
-
----
 
 _Taiwanese Telex Input Method_
