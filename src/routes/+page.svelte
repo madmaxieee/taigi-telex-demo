@@ -237,55 +237,55 @@
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">v</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.2nd')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">tev</td>
-								<td class="border border-slate-300 px-4 py-3">té</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">té</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">y</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.3rd')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">khooy</td>
-								<td class="border border-slate-300 px-4 py-3">khòo</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">khòo</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">r</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.5th')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">langr / larng</td>
-								<td class="border border-slate-300 px-4 py-3">lâng</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">lâng</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">w</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.7th')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">phiwnn / phinnw</td>
-								<td class="border border-slate-300 px-4 py-3">phīnn</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">phīnn</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">x</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.8th')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">tixt / titx</td>
-								<td class="border border-slate-300 px-4 py-3">ti̍t</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">ti̍t</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">q</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.9th')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">tsaqng / tsangq</td>
-								<td class="border border-slate-300 px-4 py-3">tsa̋ng</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tsa̋ng</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">z</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.ts')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">zo</td>
-								<td class="border border-slate-300 px-4 py-3">tso</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tso</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">c</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.tsh')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">ci</td>
-								<td class="border border-slate-300 px-4 py-3">tshi</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tshi</td>
 							</tr>
 							<tr class="bg-white hover:bg-slate-50">
 								<td class="border border-slate-300 px-4 py-3 font-mono font-medium">f</td>
 								<td class="border border-slate-300 px-4 py-3">{$_('howItWorks.tones.hyphen')}</td>
 								<td class="border border-slate-300 px-4 py-3 font-mono">tai</td>
-								<td class="border border-slate-300 px-4 py-3">tai-</td>
+								<td class="border border-slate-300 px-4 py-3 font-mono">tai-</td>
 							</tr>
 						</tbody>
 					</table>
