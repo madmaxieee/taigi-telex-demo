@@ -1,42 +1,52 @@
-# sv
+# Tâi-gí Telex 輸入法 demo
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+**[繁體中文](README.md) | [English](README.en.md) | [Tâi-gí](README.nan.md)**
 
-## Creating a project
+使用 Tâi-gí Telex 輸入台羅拼音的線上工具。
 
-If you're seeing this, you've probably already done this step. Congrats!
+🔗 **線上體驗：** https://telex.kahiok.com
 
-```sh
-# create a new project
-npx sv create my-app
-```
+---
 
-To recreate this project with the same configuration:
+## 功能說明
 
-```sh
-# recreate this project
-bun x sv@0.13.0 create --template minimal --types ts --add prettier eslint drizzle="database:d1" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" tailwindcss="plugins:typography" --install bun taigi-telex-demo
-```
+此輸入法使用類似越南 Telex 輸入法的聲調機制來輸入台羅拼音。聲調符號可以放在母音後面或每個音節的結尾。
 
-## Developing
+### 聲調按鍵對照表
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+| 按鍵 | 聲調  | 範例            | 結果  |
+| ---- | ----- | --------------- | ----- |
+| v    | 第2聲 | tev             | té    |
+| y    | 第3聲 | khooy           | khòo  |
+| d    | 第5聲 | langd / ladng   | lâng  |
+| w    | 第7聲 | phiwnn / phinnw | phīnn |
+| x    | 第8聲 | tixt / titx     | ti̍t   |
+| q    | 第9聲 | tsaqng / tsangq | tsa̋ng |
 
-```sh
-npm run dev
+### 其他功能按鍵
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+因為這幾個字母放著不用實在太浪費了，所以我擅自把他們拿來作其他用途：
 
-## Building
+| 按鍵 | 功能      | 範例 | 結果 |
+| ---- | --------- | ---- | ---- |
+| z    | 子音：ts  | zo   | tso  |
+| c    | 子音：tsh | ci   | tshi |
+| f    | 連字符    | taif | tai- |
 
-To create a production version of your app:
+### 使用範例
 
-```sh
-npm run build
-```
+- 輸入 `tai[d]` → 顯示 `tâi`
+- 輸入 `tâi[f]` → 顯示 `tâi-`
+- 輸入 `tev` → 顯示 `té`
+- 輸入 `khooy` → 顯示 `khòo`
+- 輸入 `langd` 或 `ladng` → 顯示 `lâng`
 
-You can preview the production build with `npm run preview`.
+---
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## 意見回饋
+
+如有任何問題或建議，歡迎來信：<feedback@telex.kahiok.com>
+
+---
+
+_台語 Telex 輸入法_
