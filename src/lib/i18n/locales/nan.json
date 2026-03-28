@@ -1,46 +1,33 @@
 {
-	"title": "Tâi-gí Telex Ji̍p-huat",
-	"subtitle": "Sú-iōng Telex hong-keh ji̍p ji̍t Tâi-oân Bân-lâm-gí (Tâi-lô pheng-im)",
+	"title": "Tâi-gí Telex Su-ji̍p-huat",
+	"subtitle": "Sú-iōng Tâi-gí Telex su-ji̍p-huat phah Tâi-uân-uē (Tâi-lô)",
 	"input": {
-		"label": "Chhì chhì khòaⁿ:",
-		"placeholder": "Tī chia ji̍p... (pí-jû: tair → taî, taîf → taî-)",
-		"copy": "Copy",
-		"clear": "Chhú-tiāu",
-		"transformed": "Choán-oān kiat-kó:"
+		"label": "tsí khuànn-māi:",
+		"placeholder": "Tī tsia phah-jī... (pí-jû: tai[r] → tâi, tâi[f] → tâi-)",
+		"copy": "khoo-phì",
+		"clear": "kau-siau",
+		"transformed": "tsuán-uān kiat-kó:"
 	},
 	"howItWorks": {
-		"title": "Tâi-gí Telex Ji̍p-hoat Só͘-bêng",
-		"description": "Chit ê ji̍p-hoat sú-iōng Telex hong-keh ê khí-phiat lâi ji̍p ji̍t Tâi-oân Bân-lâm-gí (Tâi-lô pheng-im). Sian-tiâu hû-hō ē-sái hòng tī bó-im āu-bīn (hâng-lāi) a̍h-sī múi ê im-chat ê kiat-bóe.",
+		"title": "Tâi-gí Telex Su-ji̍p-huat Suat-bîng",
+		"description": "Tsit ê su-ji̍p-huat sú-iōng Ua̍t-lâm Telex su-ji̍p-huat ê hong-sik lâi tsú Tâi-lô phing-im ê siann-tiāu. Siann-tiāu hû-hō ē-sái tuì tī guân-im āu-piah a̍h-sī kui-ê im-tsat ê kiat-búe.",
 		"table": {
-			"key": "Khí-phiat",
-			"tone": "Sian-tiâu",
+			"key": "Khí",
+			"tone": "Siann-tiāu",
 			"example": "Lē",
 			"result": "Kiat-kó"
 		},
 		"tones": {
-			"2nd": "Tē-2 siaⁿ",
-			"3rd": "Tē-3 siaⁿ",
-			"5th": "Tē-5 siaⁿ",
-			"7th": "Tē-7 siaⁿ",
-			"8th": "Tē-8 siaⁿ",
-			"9th": "Tē-9 siaⁿ",
-			"ts": "Chú-im: ts",
-			"tsh": "Chú-im: tsh",
+			"2nd": "Tē-2 siann",
+			"3rd": "Tē-3 siann",
+			"5th": "Tē-5 siann",
+			"7th": "Tē-7 siann",
+			"8th": "Tē-8 siann",
+			"9th": "Tē-9 siann",
+			"ts": "Tsú-im: ts",
+			"tsh": "Tsú-im: tsh",
 			"hyphen": "Liân-jī-hû"
 		}
 	},
-	"examples": {
-		"title": "Lē-tê",
-		"items": [
-			{ "input": "savng", "alt": "sangv", "output": "sáng" },
-			{ "input": "chitf", "output": "chit-" },
-			{ "input": "zo", "output": "tso" },
-			{ "input": "ci", "output": "tshi" },
-			{ "input": "oov", "output": "óo" }
-		]
-	},
-	"footer": "Tâi-oân Bân-lâm-gí (Tâi-lô pheng-im) Telex Ji̍p-hoat",
-	"language": {
-		"select": "Soán-te̍k gí-giân"
-	}
+	"footer": "Tâi-gí Telex Su-ji̍p-huat"
 }

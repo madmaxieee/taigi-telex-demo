@@ -1,4 +1,4 @@
-// Taiwanese Hokkien Telex transformation logic for Tâi-lô romanization
+// Taiwanese Telex transformation logic for Tâi-lô romanization
 
 // Taiwanese tone marks mapping
 // Key -> combining character(s) for the tone

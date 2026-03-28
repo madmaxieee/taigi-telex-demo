@@ -1,16 +1,16 @@
 {
 	"title": "Tâi-gí Telex Keyboard",
-	"subtitle": "Type Taiwanese Hokkien using Telex-style input for Tâi-lô romanization",
+	"subtitle": "Type Taiwanese using Telex-style input for Tâi-lô romanization",
 	"input": {
 		"label": "Try it out:",
-		"placeholder": "Type here... (e.g., tair → taî, taîf → taî-)",
+		"placeholder": "Type here... (e.g., tai[r] → tâi, tâi[f] → tâi-)",
 		"copy": "Copy",
 		"clear": "Clear",
 		"transformed": "Transformed:"
 	},
 	"howItWorks": {
 		"title": "How Taiwanese Telex Works",
-		"description": "This input method uses Telex-style keystrokes to type Taiwanese Hokkien (Tâi-lô) romanization. Tonal marks can be placed either inline (right after the vowel) or at the end of each syllable.",
+		"description": "This input method uses Vienameese Telex-style mechanism to type Tâi-lô's tones. Tonal marks can be placed either right after the vowel or at the end of each syllable.",
 		"table": {
 			"key": "Key",
 			"tone": "Tone",
@@ -29,18 +29,5 @@
 			"hyphen": "Hyphen"
 		}
 	},
-	"examples": {
-		"title": "Examples",
-		"items": [
-			{ "input": "savng", "alt": "sangv", "output": "sáng" },
-			{ "input": "chitf", "output": "chit-" },
-			{ "input": "zo", "output": "tso" },
-			{ "input": "ci", "output": "tshi" },
-			{ "input": "oov", "output": "óo" }
-		]
-	},
-	"footer": "Taiwanese Hokkien (Tâi-lô) Telex Input Method",
-	"language": {
-		"select": "Select language"
-	}
+	"footer": "Taiwanese Telex Input Method"
 }
