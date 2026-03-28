@@ -159,6 +159,7 @@ function transformSyllable(syllable: string): { result: string; consumed: boolea
 
 	// Apply consonant mappings (z -> ts, c -> tsh)
 	let result = processConsonants(syllable);
+	const consonantsTransformed = result !== syllable;
 
 	// Check for tone keys at the end of the syllable
 	const lastChar = result.slice(-1);
@@ -237,7 +238,8 @@ function transformSyllable(syllable: string): { result: string; consumed: boolea
 		return { result: transformed, consumed: true };
 	}
 
-	return { result: syllable, consumed: false };
+	// Return transformed result if consonants were converted, otherwise original
+	return { result: consonantsTransformed ? result : syllable, consumed: consonantsTransformed };
 }
 
 // Transform text based on Taiwanese Telex input
