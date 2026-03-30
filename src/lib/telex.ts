@@ -55,6 +55,26 @@ function findTonePosition(syllable: string): number {
 		}
 	}
 
+	// Check for composite vowel exceptions:
+	// 'iu' -> mark goes on 'u' (handled by priority), 'ui' -> mark goes on 'i'
+	for (let i = 0; i < chars.length - 1; i++) {
+		const char1 = chars[i].toLowerCase();
+		const char2 = chars[i + 1].toLowerCase();
+
+		// 'ui' - mark goes on 'i' (not 'u' as priority would suggest)
+		if (char1 === 'u' && char2 === 'i') {
+			if (!hasToneMark(chars[i + 1])) {
+				return i + 1;
+			}
+		}
+		// 'iu' - mark goes on 'u' (consistent with priority, but explicit for clarity)
+		if (char1 === 'i' && char2 === 'u') {
+			if (!hasToneMark(chars[i + 1])) {
+				return i + 1;
+			}
+		}
+	}
+
 	// Check priority order: a > e > u > i > o
 	for (const vowel of VOWEL_PRIORITY) {
 		for (let i = 0; i < chars.length; i++) {
