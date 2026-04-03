@@ -6,7 +6,10 @@
 	let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+	<title>Tâi-gí Telex Su-ji̍p-huat</title>
+	<link rel="icon" href={favicon} />
+</svelte:head>
 
 {#if $isLoading}
 	<div class="flex h-screen items-center justify-center bg-slate-50">
