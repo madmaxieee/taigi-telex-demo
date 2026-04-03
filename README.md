@@ -2,9 +2,9 @@
 
 **[繁體中文](README.md) | [English](README.en.md) | [Tâi-gí](README.nan.md)**
 
-使用 Tâi-gí Telex 輸入台羅拼音的線上工具。
+Tâi-gí Telex 台羅拼音輸入法線上體驗網站。
 
-🔗 **線上體驗：** https://telex.kahiok.com
+**線上體驗：** https://telex.kahiok.com
 
 ## 功能說明
 
@@ -12,14 +12,14 @@
 
 ### 聲調按鍵對照表
 
-| 按鍵 | 聲調  | 範例            | 結果  |
-| ---- | ----- | --------------- | ----- |
-| v    | 第2聲 | tev             | té    |
-| y    | 第3聲 | khooy           | khòo  |
-| d    | 第5聲 | langd / ladng   | lâng  |
-| w    | 第7聲 | phiwnn / phinnw | phīnn |
-| x    | 第8聲 | tixt / titx     | ti̍t   |
-| q    | 第9聲 | tsaqng / tsangq | tsa̋ng |
+| 按鍵 | 聲調  | 範例   | 結果  |
+| ---- | ----- | ------ | ----- |
+| v    | 第2聲 | tev    | té    |
+| y    | 第3聲 | khooy  | khòo  |
+| d    | 第5聲 | ladng  | lâng  |
+| w    | 第7聲 | phinnw | phīnn |
+| x    | 第8聲 | titx   | ti̍t   |
+| q    | 第9聲 | tsangq | tsa̋ng |
 
 ### 其他功能按鍵
 

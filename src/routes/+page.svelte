@@ -166,7 +166,7 @@
 		<header class="mb-12 text-center">
 			<div class="mb-4 flex justify-end gap-2">
 				<a
-					href="https://github.com/madmaxieee/taigi-telex-demo"
+					href="https://github.com/madmaxieee/taigi-telex"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="flex items-center gap-2 rounded-lg bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white hover:text-slate-900 focus:ring-2 focus:ring-teal-500 focus:outline-none"

@@ -2,9 +2,9 @@
 
 **[繁體中文](README.md) | [English](README.en.md) | [Tâi-gí](README.nan.md)**
 
-Sú-iōng Tâi-gí Telex su-ji̍p-huat lâi phah Tâi-lô phing-im ê sòo-tuānn.
+Tâi-gí Telex Tâi-lô phing-im su-ji̍p-huat ê suànn-siāng thé-giām bāng-tsām.
 
-🔗 **Suànn-tíng thé-giām：** https://telex.kahiok.com
+**Suànn-siāng thé-giām：** https://telex.kahiok.com
 
 ## Suat-bîng
 
@@ -12,14 +12,14 @@ Tsit ê su-ji̍p-huat sú-iōng Ua̍t-lâm Telex su-ji̍p-huat ê hong-sik lâi 
 
 ### Siann-tiāu khí tùi-tsiáu-pió
 
-| Khí | Siann-tiāu | Lē              | Kiat-kó |
-| --- | ---------- | --------------- | ------- |
-| v   | Tē-2 siann | tev             | té      |
-| y   | Tē-3 siann | khooy           | khòo    |
-| d   | Tē-5 siann | langd / ladng   | lâng    |
-| w   | Tē-7 siann | phiwnn / phinnw | phīnn   |
-| x   | Tē-8 siann | tixt / titx     | ti̍t     |
-| q   | Tē-9 siann | tsaqng / tsangq | tsa̋ng   |
+| Khí | Siann-tiāu | Lē     | Kiat-kó |
+| --- | ---------- | ------ | ------- |
+| v   | Tē-2 siann | tev    | té      |
+| y   | Tē-3 siann | khooy  | khòo    |
+| d   | Tē-5 siann | ladng  | lâng    |
+| w   | Tē-7 siann | phinnw | phīnn   |
+| x   | Tē-8 siann | titx   | ti̍t     |
+| q   | Tē-9 siann | tsangq | tsa̋ng   |
 
 ### Kî-thann kong-lîng khí
 

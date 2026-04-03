@@ -2,9 +2,9 @@
 
 **[繁體中文](README.md) | [English](README.en.md) | [Tâi-gí](README.nan.md)**
 
-An online tool for typing Tâi-lô (Taiwanese Romanization) using the Tâi-gí Telex input method.
+Live demo website for the Tâi-gí Telex input method that types Taiwanese with Tâi-lô romanization.
 
-🔗 **Live Demo:** https://telex.kahiok.com
+**Live Demo:** https://telex.kahiok.com
 
 ## How It Works
 
@@ -12,14 +12,14 @@ This input method uses a Vietnamese Telex-style mechanism to type Tâi-lô's ton
 
 ### Tone Key Mapping
 
-| Key | Tone     | Example         | Result |
-| --- | -------- | --------------- | ------ |
-| v   | 2nd tone | tev             | té     |
-| y   | 3rd tone | khooy           | khòo   |
-| d   | 5th tone | langd / ladng   | lâng   |
-| w   | 7th tone | phiwnn / phinnw | phīnn  |
-| x   | 8th tone | tixt / titx     | ti̍t    |
-| q   | 9th tone | tsaqng / tsangq | tsa̋ng  |
+| Key | Tone     | Example | Result |
+| --- | -------- | ------- | ------ |
+| v   | 2nd tone | tev     | té     |
+| y   | 3rd tone | khooy   | khòo   |
+| d   | 5th tone | ladng   | lâng   |
+| w   | 7th tone | phinnw  | phīnn  |
+| x   | 8th tone | titx    | ti̍t    |
+| q   | 9th tone | tsangq  | tsa̋ng  |
 
 ### Additional Function Keys
 
