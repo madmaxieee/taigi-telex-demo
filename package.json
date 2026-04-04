@@ -12,7 +12,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
+		"predeploy": "vite build",
 		"deploy": "wrangler pages deploy build",
+		"predeploy:prod": "vite build",
 		"deploy:prod": "wrangler pages deploy build --branch main"
 	},
 	"devDependencies": {
