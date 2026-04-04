@@ -106,6 +106,7 @@
 	let inputText = $state('');
 	let outputText = $state('');
 	let mode = $state<Mode>('tl');
+	let inputElement = $state<HTMLInputElement | null>(null);
 
 	// Load mode from URL or localStorage on mount
 	$effect(() => {
@@ -147,7 +148,19 @@
 	// Reactive statement to process text when input changes or mode changes
 	$effect(() => {
 		if (inputText) {
-			outputText = processTelexInput(inputText, mode);
+			const processed = processTelexInput(inputText, mode);
+			outputText = processed;
+			// Feed processed output back to input field for live transformation
+			if (processed !== inputText) {
+				inputText = processed;
+				// Restore cursor position to end after transformation
+				tick().then(() => {
+					if (inputElement) {
+						inputElement.selectionStart = processed.length;
+						inputElement.selectionEnd = processed.length;
+					}
+				});
+			}
 		} else {
 			outputText = '';
 		}
@@ -368,6 +381,7 @@
 				<input
 					id="telex-input"
 					type="text"
+					bind:this={inputElement}
 					bind:value={inputText}
 					onkeydown={handleKeyDown}
 					placeholder={$_('input.placeholder')}
