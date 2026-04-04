@@ -1,48 +1,157 @@
 <script lang="ts">
-	import { processTelexInput } from '$lib/telex';
+	import { processTelexInput, type Mode } from '$lib/telex';
 	import { tick } from 'svelte';
 	import { _ } from 'svelte-i18n';
+	import { browser } from '$app/environment';
+	import { page } from '$app/state';
 	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
-	import ExplanationRow from '$lib/components/ExplanationRow.svelte';
 
+	// Combined table data with both TL and POJ examples
 	const toneRows = [
-		{ key: 'v', labelKey: 'howItWorks.tones.2nd', example: 'tev', result: 'té' },
-		{ key: 'y', labelKey: 'howItWorks.tones.3rd', example: 'khooy', result: 'khòo' },
-		{ key: 'd', labelKey: 'howItWorks.tones.5th', example: 'langd / ladng', result: 'lâng' },
-		{ key: 'w', labelKey: 'howItWorks.tones.7th', example: 'phiwnn / phinnw', result: 'phīnn' },
-		{ key: 'x', labelKey: 'howItWorks.tones.8th', example: 'tixt / titx', result: 'ti̍t' },
-		{ key: 'q', labelKey: 'howItWorks.tones.9th', example: 'tsaqng / tsangq', result: 'tsa̋ng' }
+		{
+			key: 'v',
+			labelKey: 'howItWorks.tones.2nd',
+			tlExample: 'tev',
+			tlResult: 'té',
+			pojExample: 'chengv',
+			pojResult: 'chhéng'
+		},
+		{
+			key: 'y',
+			labelKey: 'howItWorks.tones.3rd',
+			tlExample: 'khooy',
+			tlResult: 'khòo',
+			pojExample: 'choany',
+			pojResult: 'chhòan'
+		},
+		{
+			key: 'd',
+			labelKey: 'howItWorks.tones.5th',
+			tlExample: 'langd / ladng',
+			tlResult: 'lâng',
+			pojExample: 'chengd',
+			pojResult: 'chêng'
+		},
+		{
+			key: 'w',
+			labelKey: 'howItWorks.tones.7th',
+			tlExample: 'phiwnn / phinnw',
+			tlResult: 'phīnn',
+			pojExample: 'chngw',
+			pojResult: 'chnḡ'
+		},
+		{
+			key: 'x',
+			labelKey: 'howItWorks.tones.8th',
+			tlExample: 'tixt / titx',
+			tlResult: 'ti̍t',
+			pojExample: 'siox',
+			pojResult: 'sio̍h'
+		},
+		{
+			key: 'q',
+			labelKey: 'howItWorks.tones.9th',
+			tlExample: 'tsaqng / tsangq',
+			tlResult: 'tsa̋ng',
+			pojExample: 'tangq',
+			pojResult: 'ta̋ng'
+		}
 	];
 
 	const otherRows = [
-		{ key: 'z', labelKey: 'howItWorks.functions.ts', example: 'zo', result: 'tso' },
-		{ key: 'c', labelKey: 'howItWorks.functions.tsh', example: 'ci', result: 'tshi' },
-		{ key: 'f', labelKey: 'howItWorks.functions.hyphen', example: 'taif', result: 'tai-' }
+		{
+			key: 'z',
+			tlLabelKey: 'howItWorks.functions.ts',
+			pojLabelKey: 'howItWorks.functions.ch',
+			tlExample: 'zo',
+			tlResult: 'tso',
+			pojExample: 'zeng',
+			pojResult: 'cheng'
+		},
+		{
+			key: 'c',
+			tlLabelKey: 'howItWorks.functions.tsh',
+			pojLabelKey: 'howItWorks.functions.chh',
+			tlExample: 'ci',
+			tlResult: 'tshi',
+			pojExample: 'cheng',
+			pojResult: 'chheng'
+		},
+		{
+			key: 'f',
+			labelKey: 'howItWorks.functions.hyphen',
+			tlExample: 'taif',
+			tlResult: 'tai-',
+			pojExample: 'onnfjiv',
+			pojResult: 'òⁿ-jí'
+		},
+		{
+			key: 'nn',
+			labelKey: 'howItWorks.functions.nn',
+			tlExample: '-',
+			tlResult: '-',
+			pojExample: 'ann',
+			pojResult: 'aⁿ'
+		},
+		{
+			key: 'oo',
+			labelKey: 'howItWorks.functions.oo',
+			tlExample: '-',
+			tlResult: '-',
+			pojExample: 'poo',
+			pojResult: 'pô͘'
+		}
 	];
 
 	let inputText = $state('');
 	let outputText = $state('');
+	let mode = $state<Mode>('tl');
 
-	// TODO: Implement handleInputChange - called when input value changes
-	// This callback can be used to add custom logic when the user types
-	function handleInputChange(event: Event) {
-		const target = event.target as HTMLInputElement;
-		const newValue = target.value;
+	// Load mode from URL or localStorage on mount
+	$effect(() => {
+		if (!browser) return;
 
-		// TODO: Add custom logic here (e.g., logging, validation, etc.)
-		console.log('Input changed:', newValue);
+		// First check URL param
+		const urlMode = page.url.searchParams.get('mode') as Mode | null;
+		if (urlMode === 'tl' || urlMode === 'poj') {
+			mode = urlMode;
+		} else {
+			// Then check localStorage
+			const storedMode = localStorage.getItem('telex-mode') as Mode | null;
+			if (storedMode === 'tl' || storedMode === 'poj') {
+				mode = storedMode;
+				// Update URL to match
+				updateURL(storedMode);
+			}
+		}
+	});
 
-		inputText = newValue;
+	// Update URL when mode changes
+	function updateURL(newMode: Mode) {
+		if (!browser) return;
+		const url = new URL(page.url);
+		url.searchParams.set('mode', newMode);
+		window.history.replaceState({}, '', url.toString());
 	}
 
-	// TODO: Implement handleOutputChange - called when output value changes
-	// This callback can be used to react to Telex transformations
-	function handleOutputChange(newValue: string) {
-		// TODO: Add custom logic here (e.g., save to database, sync with other components, etc.)
-		console.log('Output changed:', newValue);
-
-		outputText = newValue;
+	function handleModeChange(newMode: Mode) {
+		mode = newMode;
+		localStorage.setItem('telex-mode', newMode);
+		updateURL(newMode);
+		// Re-process input with new mode
+		if (inputText) {
+			outputText = processTelexInput(inputText, mode);
+		}
 	}
+
+	// Reactive statement to process text when input changes or mode changes
+	$effect(() => {
+		if (inputText) {
+			outputText = processTelexInput(inputText, mode);
+		} else {
+			outputText = '';
+		}
+	});
 
 	function handleKeyDown(event: KeyboardEvent) {
 		// Prevent default behavior for tone keys to handle them manually
@@ -51,15 +160,8 @@
 		if (toneKeys.includes(event.key.toLowerCase()) && !event.metaKey && !event.ctrlKey) {
 			event.preventDefault();
 			const newText = inputText + event.key;
-			const processed = processTelexInput(newText);
-
-			// TODO: Implement handleTextBeforeTransform - called before Telex transformation
-			// This callback can modify the text before transformation is applied
-			// Example use: custom preprocessing, filtering, etc.
-			const finalText = processed; // Replace with: handleTextBeforeTransform(processed)
-
-			inputText = finalText;
-			handleOutputChange(finalText);
+			const processed = processTelexInput(newText, mode);
+			inputText = processed;
 			return;
 		}
 
@@ -118,7 +220,6 @@
 				}
 
 				inputText = newText;
-				handleOutputChange(newText);
 
 				// Restore cursor position after state update
 				tick().then(() => {
@@ -130,10 +231,6 @@
 	}
 
 	function clearText() {
-		// TODO: Implement handleClear - called when text is cleared
-		// This callback can be used to reset related state or notify other components
-		console.log('Text cleared');
-
 		inputText = '';
 		outputText = '';
 	}
@@ -150,26 +247,27 @@
 		}
 	}
 
-	// Reactive statement to process text when input changes
-	$effect(() => {
-		if (inputText) {
-			outputText = processTelexInput(inputText);
-		} else {
-			outputText = '';
-		}
-	});
+	// Get mode name for display
+	function getModeName(m: Mode): string {
+		return m === 'tl' ? 'Tâi-lô' : 'POJ';
+	}
 </script>
 
-<div class="min-h-screen bg-slate-50 p-4 md:p-8">
+<div
+	class="min-h-screen p-4 md:p-8"
+	class:mode-tl={mode === 'tl'}
+	class:mode-poj={mode === 'poj'}
+	style="background-color: var(--bg-tint, #f8fafc);"
+>
 	<div class="mx-auto max-w-4xl">
 		<!-- Title -->
 		<header class="mb-12 text-center">
-			<div class="mb-4 flex justify-end gap-2">
+			<div class="mb-4 flex flex-wrap justify-end gap-2">
 				<a
 					href="https://github.com/madmaxieee/taigi-telex"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center gap-2 rounded-lg bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white hover:text-slate-900 focus:ring-2 focus:ring-teal-500 focus:outline-none"
+					class="flex items-center gap-2 rounded-lg bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white hover:text-slate-900 focus:ring-2 focus:ring-[var(--theme-500)] focus:outline-none"
 					aria-label="View on GitHub"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -185,7 +283,7 @@
 					href="https://github.com/madmaxieee/taigi-telex/releases/tag/latest"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center gap-2 rounded-lg bg-teal-600/90 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-teal-600 focus:ring-2 focus:ring-teal-500 focus:outline-none"
+					class="flex items-center gap-2 rounded-lg bg-[var(--theme-600)]/90 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-[var(--theme-600)] focus:ring-2 focus:ring-[var(--theme-500)] focus:outline-none"
 					aria-label={$_('download')}
 				>
 					<svg
@@ -206,12 +304,40 @@
 				</a>
 				<LanguageSelector />
 			</div>
+
 			<h1 class="mb-4 text-4xl font-bold text-slate-800 md:text-5xl lg:text-6xl">
-				<span class="text-teal-600"> Tâi-gí </span>
+				<span class="text-[var(--theme-600)]"> Tâi-gí </span>
 				<span class="text-slate-700">{$_('title').split(' ').slice(1).join(' ')}</span>
 			</h1>
+
+			<!-- Mode Selector -->
+			<div class="mb-6 flex justify-center">
+				<div class="flex gap-2 rounded-xl bg-white p-2 shadow-md">
+					<button
+						onclick={() => handleModeChange('tl')}
+						class="rounded-md px-6 py-2 text-base font-semibold transition-all"
+						class:bg-[var(--theme-600)]={mode === 'tl'}
+						class:text-white={mode === 'tl'}
+						class:text-slate-700={mode !== 'tl'}
+						class:hover:bg-slate-200={mode !== 'tl'}
+					>
+						{$_('modeSelector.tl')}
+					</button>
+					<button
+						onclick={() => handleModeChange('poj')}
+						class="rounded-md px-6 py-2 text-base font-semibold transition-all"
+						class:bg-[var(--theme-600)]={mode === 'poj'}
+						class:text-white={mode === 'poj'}
+						class:text-slate-700={mode !== 'poj'}
+						class:hover:bg-slate-200={mode !== 'poj'}
+					>
+						{$_('modeSelector.poj')}
+					</button>
+				</div>
+			</div>
+
 			<p class="text-lg text-slate-600 md:text-xl">
-				{$_('subtitle')}
+				{$_('subtitle', { values: { mode: getModeName(mode) } })}
 			</p>
 		</header>
 
@@ -226,7 +352,7 @@
 						<button
 							onclick={copyText}
 							disabled={!inputText && !outputText}
-							class="rounded-lg bg-teal-100 px-4 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-200 focus:ring-2 focus:ring-teal-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+							class="rounded-lg bg-[var(--theme-100)] px-4 py-2 text-sm font-medium text-[var(--theme-700)] transition-colors hover:bg-[var(--theme-200)] focus:ring-2 focus:ring-[var(--theme-400)] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 						>
 							{$_('input.copy')}
 						</button>
@@ -244,15 +370,14 @@
 					type="text"
 					bind:value={inputText}
 					onkeydown={handleKeyDown}
-					oninput={handleInputChange}
 					placeholder={$_('input.placeholder')}
-					class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-6 py-4 text-xl text-slate-800 placeholder-slate-400 transition-all focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-500/20 focus:outline-none md:text-2xl"
+					class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-6 py-4 text-xl text-slate-800 placeholder-slate-400 transition-all focus:border-[var(--theme-500)] focus:bg-white focus:ring-4 focus:ring-[var(--theme-500)]/20 focus:outline-none md:text-2xl"
 				/>
 
 				{#if outputText && outputText !== inputText}
-					<div class="rounded-lg bg-teal-50 p-4">
-						<p class="text-sm font-medium text-teal-700">{$_('input.transformed')}</p>
-						<p class="text-xl font-semibold text-teal-800 md:text-2xl">{outputText}</p>
+					<div class="rounded-lg bg-[var(--theme-50)] p-4">
+						<p class="text-sm font-medium text-[var(--theme-700)]">{$_('input.transformed')}</p>
+						<p class="text-xl font-semibold text-[var(--theme-800)] md:text-2xl">{outputText}</p>
 					</div>
 				{/if}
 			</div>
@@ -267,6 +392,7 @@
 					{$_('howItWorks.description')}
 				</p>
 
+				<!-- Combined Tone Examples Table -->
 				<div class="overflow-x-auto">
 					<table class="w-full border-collapse">
 						<thead>
@@ -277,22 +403,82 @@
 								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
 									>{$_('howItWorks.table.tone')}</th
 								>
-								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+								<th
+									class="border border-slate-300 px-4 py-3 text-left font-semibold"
+									class:bg-teal-50={mode === 'tl'}
+									class:text-teal-800={mode === 'tl'}
+									class:bg-slate-100={mode !== 'tl'}
+									class:text-slate-600={mode !== 'tl'}
+									colspan="2">{$_('modeSelector.tl')}</th
+								>
+								<th
+									class="border border-slate-300 px-4 py-3 text-left font-semibold"
+									class:bg-orange-50={mode === 'poj'}
+									class:text-orange-800={mode === 'poj'}
+									class:bg-slate-100={mode !== 'poj'}
+									class:text-slate-600={mode !== 'poj'}
+									colspan="2">{$_('modeSelector.poj')}</th
+								>
+							</tr>
+							<tr class="bg-slate-50 text-sm">
+								<th class="border border-slate-300 px-4 py-2"></th>
+								<th class="border border-slate-300 px-4 py-2"></th>
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'tl'
+										? 'bg-teal-50/50'
+										: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-700' : 'text-slate-500'}"
 									>{$_('howItWorks.table.example')}</th
 								>
-								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'tl'
+										? 'bg-teal-50/50'
+										: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-700' : 'text-slate-500'}"
+									>{$_('howItWorks.table.result')}</th
+								>
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'poj'
+										? 'bg-orange-50/50'
+										: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-700' : 'text-slate-500'}"
+									>{$_('howItWorks.table.example')}</th
+								>
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'poj'
+										? 'bg-orange-50/50'
+										: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-700' : 'text-slate-500'}"
 									>{$_('howItWorks.table.result')}</th
 								>
 							</tr>
 						</thead>
 						<tbody>
 							{#each toneRows as row (row.key)}
-								<ExplanationRow
-									key={row.key}
-									tone={$_(row.labelKey)}
-									example={row.example}
-									result={row.result}
-								/>
+								<tr class="bg-white">
+									<td class="border border-slate-300 px-4 py-3 font-medium">{row.key}</td>
+									<td class="border border-slate-300 px-4 py-3">{$_(row.labelKey)}</td>
+									<td
+										class="border border-slate-300 px-4 py-3 {mode === 'tl'
+											? 'bg-teal-50/30'
+											: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-900' : 'text-slate-700'}"
+										>{row.tlExample}</td
+									>
+									<td
+										class="border border-slate-300 px-4 py-3 font-medium {mode === 'tl'
+											? 'bg-teal-50/30'
+											: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-900' : 'text-slate-700'}"
+										>{row.tlResult}</td
+									>
+									<td
+										class="border border-slate-300 px-4 py-3 {mode === 'poj'
+											? 'bg-orange-50/30'
+											: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-900' : 'text-slate-700'}"
+										>{row.pojExample}</td
+									>
+									<td
+										class="border border-slate-300 px-4 py-3 font-medium {mode === 'poj'
+											? 'bg-orange-50/30'
+											: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-900' : 'text-slate-700'}"
+										>{row.pojResult}</td
+									>
+								</tr>
 							{/each}
 						</tbody>
 					</table>
@@ -302,6 +488,7 @@
 					{$_('howItWorks.additionalKeysDescription')}
 				</p>
 
+				<!-- Combined Functions Table -->
 				<div class="mt-8 overflow-x-auto">
 					<table class="w-full border-collapse">
 						<thead>
@@ -312,22 +499,84 @@
 								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
 									>{$_('howItWorks.table.function')}</th
 								>
-								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+								<th
+									class="border border-slate-300 px-4 py-3 text-left font-semibold {mode === 'tl'
+										? 'bg-teal-50'
+										: 'bg-slate-100'} {mode === 'tl' ? 'text-teal-800' : 'text-slate-600'}"
+									colspan="2">{$_('modeSelector.tl')}</th
+								>
+								<th
+									class="border border-slate-300 px-4 py-3 text-left font-semibold {mode === 'poj'
+										? 'bg-orange-50'
+										: 'bg-slate-100'} {mode === 'poj' ? 'text-orange-800' : 'text-slate-600'}"
+									colspan="2">{$_('modeSelector.poj')}</th
+								>
+							</tr>
+							<tr class="bg-slate-50 text-sm">
+								<th class="border border-slate-300 px-4 py-2"></th>
+								<th class="border border-slate-300 px-4 py-2"></th>
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'tl'
+										? 'bg-teal-50/50'
+										: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-700' : 'text-slate-500'}"
 									>{$_('howItWorks.table.example')}</th
 								>
-								<th class="border border-slate-300 px-4 py-3 text-left font-semibold text-slate-700"
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'tl'
+										? 'bg-teal-50/50'
+										: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-700' : 'text-slate-500'}"
+									>{$_('howItWorks.table.result')}</th
+								>
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'poj'
+										? 'bg-orange-50/50'
+										: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-700' : 'text-slate-500'}"
+									>{$_('howItWorks.table.example')}</th
+								>
+								<th
+									class="border border-slate-300 px-4 py-2 font-medium {mode === 'poj'
+										? 'bg-orange-50/50'
+										: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-700' : 'text-slate-500'}"
 									>{$_('howItWorks.table.result')}</th
 								>
 							</tr>
 						</thead>
 						<tbody>
 							{#each otherRows as row (row.key)}
-								<ExplanationRow
-									key={row.key}
-									tone={$_(row.labelKey)}
-									example={row.example}
-									result={row.result}
-								/>
+								<tr class="bg-white">
+									<td class="border border-slate-300 px-4 py-3 font-medium">{row.key}</td>
+									<td class="border border-slate-300 px-4 py-3">
+										{#if row.labelKey}
+											{$_(row.labelKey)}
+										{:else}
+											{mode === 'tl' ? $_(row.tlLabelKey ?? '') : $_(row.pojLabelKey ?? '')}
+										{/if}
+									</td>
+									<td
+										class="border border-slate-300 px-4 py-3 {mode === 'tl'
+											? 'bg-teal-50/30'
+											: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-900' : 'text-slate-700'}"
+										class:text-slate-400={row.tlExample === '-'}>{row.tlExample}</td
+									>
+									<td
+										class="border border-slate-300 px-4 py-3 font-medium {mode === 'tl'
+											? 'bg-teal-50/30'
+											: 'bg-slate-50'} {mode === 'tl' ? 'text-teal-900' : 'text-slate-700'}"
+										class:text-slate-400={row.tlResult === '-'}>{row.tlResult}</td
+									>
+									<td
+										class="border border-slate-300 px-4 py-3 {mode === 'poj'
+											? 'bg-orange-50/30'
+											: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-900' : 'text-slate-700'}"
+										class:text-slate-400={row.pojExample === '-'}>{row.pojExample}</td
+									>
+									<td
+										class="border border-slate-300 px-4 py-3 font-medium {mode === 'poj'
+											? 'bg-orange-50/30'
+											: 'bg-slate-50'} {mode === 'poj' ? 'text-orange-900' : 'text-slate-700'}"
+										class:text-slate-400={row.pojResult === '-'}>{row.pojResult}</td
+									>
+								</tr>
 							{/each}
 						</tbody>
 					</table>
@@ -341,7 +590,7 @@
 			<p class="mt-2">
 				<a
 					href="mailto:feedback@telex.kahiok.com?subject=feedback"
-					class="text-teal-600 hover:text-teal-700 hover:underline"
+					class="text-[var(--theme-600)] hover:text-[var(--theme-700)] hover:underline"
 				>
 					feedback@telex.kahiok.com
 				</a>

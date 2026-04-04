@@ -1,6 +1,11 @@
 {
 	"title": "Tâi-gí Telex Su-ji̍p-huat",
-	"subtitle": "Sú-iōng Tâi-gí Telex su-ji̍p-huat phah Tâi-lô",
+	"subtitle": "Sú-iōng Tâi-gí Telex su-ji̍p-huat phah {mode}",
+	"modeSelector": {
+		"label": "Hong-sik:",
+		"tl": "Tâi-lô",
+		"poj": "Pe̍h-ōe-jī"
+	},
 	"input": {
 		"label": "tsí khuànn-māi:",
 		"placeholder": "Tī tsia phah-jī... (pí-jû: tai[d] → tâi, tâi[f] → tâi-)",
@@ -10,7 +15,7 @@
 	},
 	"howItWorks": {
 		"title": "Tâi-gí Telex Su-ji̍p-huat Suat-bîng",
-		"description": "Tsit ê su-ji̍p-huat sú-iōng Ua̍t-lâm Telex su-ji̍p-huat ê hong-sik lâi tsú Tâi-lô phing-im ê siann-tiāu. Siann-tiāu hû-hō ē-sái tuì tī guân-im āu-piah a̍h-sī kui-ê im-tsat ê kiat-búe.",
+		"description": "Tsit ê su-ji̍p-huat sú-iōng Ua̍t-lâm Telex su-ji̍p-huat ê hong-sik lâi tsú Tâi-gí lô-má-jī ê siann-tiāu. Siann-tiāu hû-hō ē-sái tuì tī guân-im āu-piah a̍h-sī kui-ê im-tsat ê kiat-búe.",
 		"additionalKeysDescription": "In-uī tsit kuí-ê jī-bó bô iōng sit-tsāi siūnn thó-tsè, sóo-í guá kā in the̍h lâi tsò kî-thann ê kong-lîng.",
 		"table": {
 			"key": "Khí",
@@ -28,9 +33,13 @@
 			"9th": "Tē-9 siann"
 		},
 		"functions": {
-			"ts": "Tsú-im: ts",
-			"tsh": "Tsú-im: tsh",
-			"hyphen": "Liân-jī-hû"
+			"ts": "Tsú-im",
+			"tsh": "Tsú-im",
+			"ch": "Tsú-im (POJ)",
+			"chh": "Tsú-im (POJ)",
+			"hyphen": "Liân-jī-hû",
+			"nn": "Phīⁿ-hòa (POJ)",
+			"oo": "Boó-im (POJ)"
 		}
 	},
 	"download": "hā-tsài",

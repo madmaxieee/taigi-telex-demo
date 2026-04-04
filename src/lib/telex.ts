@@ -1,4 +1,6 @@
-// Taiwanese Telex transformation logic for Tâi-lô romanization
+// Taiwanese Telex transformation logic for Tâi-lô (TL) and Pe̍h-ōe-jī (POJ) romanization
+
+export type Mode = 'tl' | 'poj';
 
 // Taiwanese tone marks mapping
 // Key -> combining character(s) for the tone
@@ -14,18 +16,33 @@ const TONE_MARKS: Record<string, string> = {
 // All combining tone marks for detection
 const ALL_TONE_MARKS_REGEX = /[\u0300-\u036f\u0301\u0300\u0302\u0304\u030D\u030B]/g;
 
-// Vowel priority for tone placement: a > e > u > i > o
-// For compound vowels separated by hyphen/space, apply priority within each part
-const VOWEL_PRIORITY = ['a', 'e', 'u', 'i', 'o'];
+// Combining dot below for POJ o͘
+const COMBINING_DOT_BELOW = '\u0324';
+
+// Superscript n for POJ nasalization
+const SUPER_SCRIPT_N = '\u207F';
+
+// Vowel priority for tone placement
+// TL: a > e > o > u > i
+// POJ: o͘ > a > e > o > u > i
+const VOWEL_PRIORITY_TL = ['a', 'e', 'o', 'u', 'i'];
+const VOWEL_PRIORITY_POJ = ['o', 'a', 'e', 'u', 'i']; // o͘ is handled specially
 
 // Check if character is a vowel (base form)
-function isVowel(char: string): boolean {
-	return VOWEL_PRIORITY.includes(char.toLowerCase());
+function isVowel(char: string, mode: Mode = 'tl'): boolean {
+	const priority = mode === 'poj' ? VOWEL_PRIORITY_POJ : VOWEL_PRIORITY_TL;
+	return priority.includes(char.toLowerCase());
 }
 
 // Get the base vowel character (without tone marks)
 function getBaseVowel(char: string): string {
 	return char.normalize('NFD').replace(ALL_TONE_MARKS_REGEX, '');
+}
+
+// Check if character is o with dot below (POJ-specific)
+function isODotBelow(char: string): boolean {
+	const normalized = char.normalize('NFD');
+	return normalized.includes('o') && normalized.includes(COMBINING_DOT_BELOW);
 }
 
 // Find the position of a vowel that already has a tone mark
@@ -41,22 +58,51 @@ function findExistingTonePosition(syllable: string): number {
 }
 
 // Find the position where tone should be placed within a syllable
-// Rules: a > e > u > i > o, for oo mark first o, for ng mark n not g
-function findTonePosition(syllable: string): number {
+function findTonePosition(syllable: string, mode: Mode = 'tl'): number {
 	const chars = [...syllable]; // Use spread for proper Unicode handling
 
-	// Check for 'oo' vowel - if found, mark goes on first 'o'
-	for (let i = 0; i < chars.length - 1; i++) {
-		if (chars[i].toLowerCase() === 'o' && chars[i + 1].toLowerCase() === 'o') {
-			// Skip if this 'o' already has a tone mark
-			if (!hasToneMark(chars[i])) {
+	// POJ mode: o͘ has highest priority
+	if (mode === 'poj') {
+		for (let i = 0; i < chars.length; i++) {
+			if (isODotBelow(chars[i]) && !hasToneMark(chars[i])) {
 				return i;
+			}
+		}
+
+		// Handle POJ-specific exceptions: eo -> mark on e, oe -> mark on o
+		for (let i = 0; i < chars.length - 1; i++) {
+			const char1 = chars[i].toLowerCase();
+			const char2 = chars[i + 1].toLowerCase();
+
+			// 'eo' - mark goes on 'e'
+			if (char1 === 'e' && char2 === 'o') {
+				if (!hasToneMark(chars[i])) {
+					return i;
+				}
+			}
+			// 'oe' - mark goes on 'o'
+			if (char1 === 'o' && char2 === 'e') {
+				if (!hasToneMark(chars[i])) {
+					return i;
+				}
+			}
+		}
+	}
+
+	// TL mode: Check for 'oo' vowel - mark goes on first 'o'
+	if (mode === 'tl') {
+		for (let i = 0; i < chars.length - 1; i++) {
+			if (chars[i].toLowerCase() === 'o' && chars[i + 1].toLowerCase() === 'o') {
+				// Skip if this 'o' already has a tone mark
+				if (!hasToneMark(chars[i])) {
+					return i;
+				}
 			}
 		}
 	}
 
 	// Check for composite vowel exceptions:
-	// 'iu' -> mark goes on 'u' (handled by priority), 'ui' -> mark goes on 'i'
+	// 'iu' -> mark goes on 'u', 'ui' -> mark goes on 'i'
 	for (let i = 0; i < chars.length - 1; i++) {
 		const char1 = chars[i].toLowerCase();
 		const char2 = chars[i + 1].toLowerCase();
@@ -75,8 +121,9 @@ function findTonePosition(syllable: string): number {
 		}
 	}
 
-	// Check priority order: a > e > u > i > o
-	for (const vowel of VOWEL_PRIORITY) {
+	// Check priority order
+	const priority = mode === 'poj' ? VOWEL_PRIORITY_POJ : VOWEL_PRIORITY_TL;
+	for (const vowel of priority) {
 		for (let i = 0; i < chars.length; i++) {
 			if (chars[i].toLowerCase() === vowel && !hasToneMark(chars[i])) {
 				// Special case: for 'ng', mark goes on 'n', not 'g'
@@ -124,9 +171,10 @@ function applyToneMark(char: string, toneKey: string): string {
 	return base + combiningMark;
 }
 
-// Process z and c consonant mappings (NOT f, which is handled separately)
-// z -> ts, c -> tsh
-function processConsonants(text: string): string {
+// Process consonant mappings based on mode
+// TL: z -> ts, c -> tsh
+// POJ: z -> ch, c -> chh
+function processConsonants(text: string, mode: Mode = 'tl'): string {
 	let result = '';
 	const chars = [...text];
 
@@ -135,9 +183,17 @@ function processConsonants(text: string): string {
 		const lowerChar = char.toLowerCase();
 
 		if (lowerChar === 'z') {
-			result += char === 'Z' ? 'TS' : 'ts';
+			if (mode === 'poj') {
+				result += char === 'Z' ? 'Ch' : 'ch';
+			} else {
+				result += char === 'Z' ? 'Ts' : 'ts';
+			}
 		} else if (lowerChar === 'c') {
-			result += char === 'C' ? 'TSH' : 'tsh';
+			if (mode === 'poj') {
+				result += char === 'C' ? 'Chh' : 'chh';
+			} else {
+				result += char === 'C' ? 'Tsh' : 'tsh';
+			}
 		} else {
 			result += char;
 		}
@@ -157,6 +213,78 @@ function processHyphen(text: string): { result: string; consumed: boolean } {
 	return { result: text, consumed: false };
 }
 
+// Process POJ-specific features
+// nn -> ⁿ (superscript n)
+// oo -> o͘ (o with dot below)
+// nnn -> nn (escape sequence)
+// ooo -> oo (escape sequence)
+function processPOJFeatures(text: string): { result: string; consumed: boolean } {
+	// Check for escape sequences first (nnn -> nn, ooo -> oo)
+	// We need to track which n's/o's are part of escapes
+	const chars = [...text];
+	let result = '';
+	let i = 0;
+	let consumed = false;
+
+	while (i < chars.length) {
+		const char = chars[i];
+		const lowerChar = char.toLowerCase();
+
+		// Check for nnn or ooo escape sequences
+		if (i + 2 < chars.length) {
+			const next1 = chars[i + 1];
+			const next2 = chars[i + 2];
+
+			// nnn -> nn (escape)
+			if (lowerChar === 'n' && next1.toLowerCase() === 'n' && next2.toLowerCase() === 'n') {
+				result += char + next1; // Keep literal 'nn'
+				i += 3;
+				consumed = true;
+				continue;
+			}
+
+			// ooo -> oo (escape)
+			if (lowerChar === 'o' && next1.toLowerCase() === 'o' && next2.toLowerCase() === 'o') {
+				result += char + next1; // Keep literal 'oo'
+				i += 3;
+				consumed = true;
+				continue;
+			}
+		}
+
+		// Check for nn -> ⁿ (but not if followed by another n, which we already handled)
+		if (lowerChar === 'n' && i + 1 < chars.length && chars[i + 1].toLowerCase() === 'n') {
+			// Check if this is at a word boundary or followed by non-letter
+			const nextNext = chars[i + 2];
+			if (!nextNext || !/[a-zA-Z]/.test(nextNext)) {
+				result += SUPER_SCRIPT_N;
+				i += 2;
+				consumed = true;
+				continue;
+			}
+		}
+
+		// Check for oo -> o͘ (but not if followed by another o, which we already handled)
+		if (lowerChar === 'o' && i + 1 < chars.length && chars[i + 1].toLowerCase() === 'o') {
+			// Check if this is at a word boundary or followed by non-letter
+			const nextNext = chars[i + 2];
+			if (!nextNext || !/[a-zA-Z]/.test(nextNext)) {
+				// Apply dot below to 'o'
+				const baseO = char === 'O' ? 'O' : 'o';
+				result += baseO + COMBINING_DOT_BELOW;
+				i += 2;
+				consumed = true;
+				continue;
+			}
+		}
+
+		result += char;
+		i++;
+	}
+
+	return { result, consumed };
+}
+
 // Split text into syllables by delimiters (hyphen, space)
 function splitIntoSyllables(text: string): string[] {
 	// Split on hyphen or space, but keep the delimiters
@@ -164,11 +292,17 @@ function splitIntoSyllables(text: string): string[] {
 }
 
 // Transform a single syllable based on Taiwanese Telex rules
-function transformSyllable(syllable: string): { result: string; consumed: boolean } {
+function transformSyllable(
+	syllable: string,
+	mode: Mode = 'tl'
+): { result: string; consumed: boolean } {
 	// Check if this is a delimiter
 	if (/^[-\s]+$/.test(syllable)) {
 		return { result: syllable, consumed: false };
 	}
+
+	let result = syllable;
+	let anyConsumed = false;
 
 	// First, check for hyphen substitution (f -> -)
 	// This works even if there's already a tone on the syllable
@@ -177,9 +311,22 @@ function transformSyllable(syllable: string): { result: string; consumed: boolea
 		return hyphenResult;
 	}
 
-	// Apply consonant mappings (z -> ts, c -> tsh)
-	let result = processConsonants(syllable);
-	const consonantsTransformed = result !== syllable;
+	// Apply POJ-specific features first (nn -> ⁿ, oo -> o͘)
+	if (mode === 'poj') {
+		const pojResult = processPOJFeatures(result);
+		if (pojResult.consumed) {
+			result = pojResult.result;
+			anyConsumed = true;
+		}
+	}
+
+	// Apply consonant mappings (z -> ts/ch, c -> tsh/chh)
+	const consonantsResult = processConsonants(result, mode);
+	const consonantsTransformed = consonantsResult !== result;
+	if (consonantsTransformed) {
+		result = consonantsResult;
+		anyConsumed = true;
+	}
 
 	// Check for tone keys at the end of the syllable
 	const lastChar = result.slice(-1);
@@ -198,7 +345,7 @@ function transformSyllable(syllable: string): { result: string; consumed: boolea
 			return { result, consumed: true };
 		} else {
 			// Find where to place the tone mark (no existing tone)
-			const pos = findTonePosition(base);
+			const pos = findTonePosition(base, mode);
 			if (pos !== -1) {
 				const chars = [...base];
 				chars[pos] = applyToneMark(chars[pos], toneKey);
@@ -217,7 +364,7 @@ function transformSyllable(syllable: string): { result: string; consumed: boolea
 		const current = transformed[i];
 		const next = transformed[i + 1];
 
-		if (isVowel(current) && next in TONE_MARKS) {
+		if (isVowel(getBaseVowel(current), mode) && next in TONE_MARKS) {
 			const toneKey = next;
 
 			// Check if there's already a tone somewhere in the syllable
@@ -258,18 +405,21 @@ function transformSyllable(syllable: string): { result: string; consumed: boolea
 		return { result: transformed, consumed: true };
 	}
 
-	// Return transformed result if consonants were converted, otherwise original
-	return { result: consonantsTransformed ? result : syllable, consumed: consonantsTransformed };
+	// Return transformed result if any transformations occurred
+	return { result, consumed: anyConsumed };
 }
 
 // Transform text based on Taiwanese Telex input
-export function transformTelex(text: string): { result: string; consumed: boolean } {
+export function transformTelex(
+	text: string,
+	mode: Mode = 'tl'
+): { result: string; consumed: boolean } {
 	const syllables = splitIntoSyllables(text);
 	let transformed = '';
 	let anyConsumed = false;
 
 	for (const syllable of syllables) {
-		const { result, consumed } = transformSyllable(syllable);
+		const { result, consumed } = transformSyllable(syllable, mode);
 		transformed += result;
 		if (consumed) anyConsumed = true;
 	}
@@ -278,13 +428,13 @@ export function transformTelex(text: string): { result: string; consumed: boolea
 }
 
 // Process full input string iteratively
-export function processTelexInput(input: string): string {
+export function processTelexInput(input: string, mode: Mode = 'tl'): string {
 	let result = input;
 
 	// Keep applying transformations until no more changes
 	let changed = true;
 	while (changed) {
-		const { result: newResult, consumed } = transformTelex(result);
+		const { result: newResult, consumed } = transformTelex(result, mode);
 		if (consumed) {
 			result = newResult;
 		} else {
@@ -296,22 +446,37 @@ export function processTelexInput(input: string): string {
 }
 
 // Get tone position for visualization
-export function getTonePosition(input: string): number {
+export function getTonePosition(input: string, mode: Mode = 'tl'): number {
 	const syllables = splitIntoSyllables(input);
 	if (syllables.length === 0) return -1;
 
 	// Find position in the first syllable
-	return findTonePosition(syllables[0]);
+	return findTonePosition(syllables[0], mode);
 }
 
 // Helper function to check if a string is a valid Taiwanese syllable
-export function isValidSyllable(syllable: string): boolean {
-	// A valid syllable should have at least one vowel (a, e, i, o, u, oo, ng, m)
+export function isValidSyllable(syllable: string, mode: Mode = 'tl'): boolean {
+	// A valid syllable should have at least one vowel (a, e, i, o, u, oo, ng, m, or o͘/ⁿ in POJ)
 	const normalized = syllable.toLowerCase();
 	const hasVowel =
 		/[aeiou]/.test(normalized) ||
 		/oo/.test(normalized) ||
 		/ng/.test(normalized) ||
 		/m$/.test(normalized);
+
+	if (mode === 'poj') {
+		const hasPOJVowel =
+			normalized.includes('o' + COMBINING_DOT_BELOW) || normalized.includes(SUPER_SCRIPT_N);
+		return hasVowel || hasPOJVowel;
+	}
+
 	return hasVowel;
 }
+
+// Default export for convenience
+export default {
+	transformTelex,
+	processTelexInput,
+	getTonePosition,
+	isValidSyllable
+};
