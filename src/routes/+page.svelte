@@ -13,48 +13,48 @@
 			labelKey: 'howItWorks.tones.2nd',
 			tlExample: 'tev',
 			tlResult: 'té',
-			pojExample: 'chengv',
-			pojResult: 'chhéng'
+			pojExample: 'hoov',
+			pojResult: 'hó͘ '
 		},
 		{
 			key: 'y',
 			labelKey: 'howItWorks.tones.3rd',
 			tlExample: 'khooy',
 			tlResult: 'khòo',
-			pojExample: 'choany',
-			pojResult: 'chhòan'
+			pojExample: 'pay',
+			pojResult: 'pà'
 		},
 		{
 			key: 'd',
 			labelKey: 'howItWorks.tones.5th',
-			tlExample: 'langd / ladng',
+			tlExample: 'langd',
 			tlResult: 'lâng',
-			pojExample: 'chengd',
-			pojResult: 'chêng'
+			pojExample: 'kaud',
+			pojResult: 'kâu'
 		},
 		{
 			key: 'w',
 			labelKey: 'howItWorks.tones.7th',
-			tlExample: 'phiwnn / phinnw',
+			tlExample: 'phinnw',
 			tlResult: 'phīnn',
-			pojExample: 'chngw',
-			pojResult: 'chnḡ'
+			pojExample: 'ciunnw',
+			pojResult: 'chhiūⁿ'
 		},
 		{
 			key: 'x',
 			labelKey: 'howItWorks.tones.8th',
-			tlExample: 'tixt / titx',
+			tlExample: 'titx',
 			tlResult: 'ti̍t',
-			pojExample: 'siox',
-			pojResult: 'sio̍h'
+			pojExample: 'lokx',
+			pojResult: 'lo̍k'
 		},
 		{
 			key: 'q',
 			labelKey: 'howItWorks.tones.9th',
-			tlExample: 'tsaqng / tsangq',
+			tlExample: 'tsangq',
 			tlResult: 'tsa̋ng',
-			pojExample: 'tangq',
-			pojResult: 'ta̋ng'
+			pojExample: 'ianq',
+			pojResult: 'ia̋n'
 		}
 	];
 
@@ -65,8 +65,8 @@
 			pojLabelKey: 'howItWorks.functions.ch',
 			tlExample: 'zo',
 			tlResult: 'tso',
-			pojExample: 'zeng',
-			pojResult: 'cheng'
+			pojExample: 'zit',
+			pojResult: 'chit'
 		},
 		{
 			key: 'c',
@@ -74,24 +74,24 @@
 			pojLabelKey: 'howItWorks.functions.chh',
 			tlExample: 'ci',
 			tlResult: 'tshi',
-			pojExample: 'cheng',
-			pojResult: 'chheng'
+			pojExample: 'coew',
+			pojResult: 'chhōe'
 		},
 		{
 			key: 'f',
 			labelKey: 'howItWorks.functions.hyphen',
 			tlExample: 'taif',
 			tlResult: 'tai-',
-			pojExample: 'onnfjiv',
-			pojResult: 'òⁿ-jí'
+			pojExample: 'taif',
+			pojResult: 'tai-'
 		},
 		{
 			key: 'nn',
 			labelKey: 'howItWorks.functions.nn',
 			tlExample: '-',
 			tlResult: '-',
-			pojExample: 'ann',
-			pojResult: 'aⁿ'
+			pojExample: 'sann',
+			pojResult: 'saⁿ'
 		},
 		{
 			key: 'oo',
@@ -99,7 +99,7 @@
 			tlExample: '-',
 			tlResult: '-',
 			pojExample: 'poo',
-			pojResult: 'pô͘'
+			pojResult: 'po͘'
 		}
 	];
 
@@ -373,13 +373,6 @@
 					placeholder={$_('input.placeholder')}
 					class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-6 py-4 text-xl text-slate-800 placeholder-slate-400 transition-all focus:border-[var(--theme-500)] focus:bg-white focus:ring-4 focus:ring-[var(--theme-500)]/20 focus:outline-none md:text-2xl"
 				/>
-
-				{#if outputText && outputText !== inputText}
-					<div class="rounded-lg bg-[var(--theme-50)] p-4">
-						<p class="text-sm font-medium text-[var(--theme-700)]">{$_('input.transformed')}</p>
-						<p class="text-xl font-semibold text-[var(--theme-800)] md:text-2xl">{outputText}</p>
-					</div>
-				{/if}
 			</div>
 		</section>
 

@@ -35,8 +35,8 @@
 		"functions": {
 			"ts": "Consonant",
 			"tsh": "Consonant",
-			"ch": "Consonant (POJ)",
-			"chh": "Consonant (POJ)",
+			"ch": "Consonant",
+			"chh": "Consonant",
 			"hyphen": "Hyphen",
 			"nn": "Nasal (POJ)",
 			"oo": "Vowel (POJ)"
