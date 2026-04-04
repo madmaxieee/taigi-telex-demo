@@ -262,7 +262,7 @@
 
 	// Get mode name for display
 	function getModeName(m: Mode): string {
-		return m === 'tl' ? 'Tâi-lô' : 'Pe̍h-ōe-jk';
+		return m === 'tl' ? 'Tâi-lô' : 'Pe̍h-ōe-jī';
 	}
 </script>
 
