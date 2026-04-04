@@ -16,8 +16,8 @@ const TONE_MARKS: Record<string, string> = {
 // All combining tone marks for detection
 const ALL_TONE_MARKS_REGEX = /[\u0300-\u036f\u0301\u0300\u0302\u0304\u030D\u030B]/g;
 
-// Combining dot below for POJ o͘
-const COMBINING_DOT_BELOW = '\u0324';
+// Combining dot above right for POJ o͘
+const COMBINING_DOT_ABOVE_RIGHT = '\u0358';
 
 // Superscript n for POJ nasalization
 const SUPER_SCRIPT_N = '\u207F';
@@ -39,10 +39,10 @@ function getBaseVowel(char: string): string {
 	return char.normalize('NFD').replace(ALL_TONE_MARKS_REGEX, '');
 }
 
-// Check if character is o with dot below (POJ-specific)
-function isODotBelow(char: string): boolean {
+// Check if character is o with dot above right (POJ-specific)
+function isODotAboveRight(char: string): boolean {
 	const normalized = char.normalize('NFD');
-	return normalized.includes('o') && normalized.includes(COMBINING_DOT_BELOW);
+	return normalized.includes('o') && normalized.includes(COMBINING_DOT_ABOVE_RIGHT);
 }
 
 // Find the position of a vowel that already has a tone mark
@@ -64,7 +64,7 @@ function findTonePosition(syllable: string, mode: Mode = 'tl'): number {
 	// POJ mode: o͘ has highest priority
 	if (mode === 'poj') {
 		for (let i = 0; i < chars.length; i++) {
-			if (isODotBelow(chars[i]) && !hasToneMark(chars[i])) {
+			if (isODotAboveRight(chars[i]) && !hasToneMark(chars[i])) {
 				return i;
 			}
 		}
@@ -269,9 +269,9 @@ function processPOJFeatures(text: string): { result: string; consumed: boolean }
 			// Check if this is at a word boundary or followed by non-letter
 			const nextNext = chars[i + 2];
 			if (!nextNext || !/[a-zA-Z]/.test(nextNext)) {
-				// Apply dot below to 'o'
+				// Apply dot above right to 'o'
 				const baseO = char === 'O' ? 'O' : 'o';
-				result += baseO + COMBINING_DOT_BELOW;
+				result += baseO + COMBINING_DOT_ABOVE_RIGHT;
 				i += 2;
 				consumed = true;
 				continue;
@@ -466,7 +466,7 @@ export function isValidSyllable(syllable: string, mode: Mode = 'tl'): boolean {
 
 	if (mode === 'poj') {
 		const hasPOJVowel =
-			normalized.includes('o' + COMBINING_DOT_BELOW) || normalized.includes(SUPER_SCRIPT_N);
+			normalized.includes('o' + COMBINING_DOT_ABOVE_RIGHT) || normalized.includes(SUPER_SCRIPT_N);
 		return hasVowel || hasPOJVowel;
 	}
 
