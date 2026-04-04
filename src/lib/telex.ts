@@ -14,7 +14,8 @@ const TONE_MARKS: Record<string, string> = {
 };
 
 // All combining tone marks for detection
-const ALL_TONE_MARKS_REGEX = /[\u0300-\u036f\u0301\u0300\u0302\u0304\u030D\u030B]/g;
+// Note: \u0358 (combining dot above right for POJ o͘) is excluded
+const ALL_TONE_MARKS_REGEX = /[\u0300-\u0357\u0359-\u036f\u0301\u0300\u0302\u0304\u030D\u030B]/g;
 
 // Combining dot above right for POJ o͘
 const COMBINING_DOT_ABOVE_RIGHT = '\u0358';
@@ -154,9 +155,10 @@ function findTonePosition(syllable: string, mode: Mode = 'tl'): number {
 }
 
 // Check if a character already has a tone mark
+// Note: \u0358 (combining dot above right for POJ o͘) is not a tone mark
 function hasToneMark(char: string): boolean {
 	const normalized = char.normalize('NFD');
-	return /[\u0300-\u036f]/.test(normalized);
+	return /[\u0300-\u0357\u0359-\u036f]/.test(normalized);
 }
 
 // Apply tone mark to a character
