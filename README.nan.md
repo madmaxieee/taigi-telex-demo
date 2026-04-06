@@ -12,24 +12,26 @@ Tsit ê su-ji̍p-huat sú-iōng Ua̍t-lâm Telex su-ji̍p-huat ê hong-sik lâi 
 
 ### Siann-tiāu khí tùi-tsiáu-pió
 
-| Khí | Siann-tiāu | Lē     | Kiat-kó |
-| --- | ---------- | ------ | ------- |
-| v   | Tē-2 siann | tev    | té      |
-| y   | Tē-3 siann | khooy  | khòo    |
-| d   | Tē-5 siann | ladng  | lâng    |
-| w   | Tē-7 siann | phinnw | phīnn   |
-| x   | Tē-8 siann | titx   | ti̍t     |
-| q   | Tē-9 siann | tsangq | tsa̋ng   |
+| Khí | Siann-tiāu | Tâi-lô Lē | Tâi-lô Kiat-kó | Pe̍h-ōe-jī Lē | Pe̍h-ōe-jī Kiat-kó |
+| --- | ---------- | --------- | -------------- | ------------ | ----------------- |
+| v   | Tē-2 siann | tev       | té             | hoov         | hó͘                |
+| y   | Tē-3 siann | khooy     | khòo           | pay          | pà                |
+| d   | Tē-5 siann | langd     | lâng           | kaud         | kâu               |
+| w   | Tē-7 siann | phinnw    | phīnn          | ciunnw       | chhiūⁿ            |
+| x   | Tē-8 siann | titx      | ti̍t            | lokx         | lo̍k               |
+| q   | Tē-9 siann | tsangq    | tsa̋ng          | ianq         | ia̋n               |
 
 ### Kî-thann kong-lîng khí
 
 In-uī tsit kuí-ê jī-bó bô iōng sit-tsāi siūnn thó-tsè, sóo-í guá kā in the̍h lâi tsò kî-thann ê kong-lîng:
 
-| Khí | Kong-lîng   | Lē   | Kiat-kó |
-| --- | ----------- | ---- | ------- |
-| z   | Tsú-im: ts  | zo   | tso     |
-| c   | Tsú-im: tsh | ci   | tshi    |
-| f   | Liân-jī-hû  | taif | tai-    |
+| Khí | Kong-lîng (Tâi-lô / Pe̍h-ōe-jī)    | Tâi-lô Lē | Tâi-lô Kiat-kó | Pe̍h-ōe-jī Lē | Pe̍h-ōe-jī Kiat-kó |
+| --- | --------------------------------- | --------- | -------------- | ------------ | ----------------- |
+| z   | Tsú-im: ts / ch                   | zo        | tso            | zit          | chit              |
+| c   | Tsú-im: tsh / chh                 | ci        | tshi           | coew         | chhōe             |
+| f   | Liân-jī-hû                        | taif      | tai-           | taif         | tai-              |
+| nn  | Phīnn-im (kan-na Pe̍h-ōe-jī)       | -         | -              | sann         | saⁿ               |
+| oo  | Puànn-phīnn-im (kan-na Pe̍h-ōe-jī) | -         | -              | poo          | po͘                |
 
 ### Sú-iōng lē
 
@@ -37,7 +39,7 @@ In-uī tsit kuí-ê jī-bó bô iōng sit-tsāi siūnn thó-tsè, sóo-í guá k
 - Phah `tâi[f]` → hián-sī `tâi-`
 - Phah `tev` → hián-sī `té`
 - Phah `khooy` → hián-sī `khòo`
-- Phah `langd` a̍h-sī `ladng` → hián-sī `lâng`
+- Phah `langd` → hián-sī `lâng`
 
 ## I-kiàn hôe-hok
 

@@ -12,32 +12,26 @@ This input method uses a Vietnamese Telex-style mechanism to type Tâi-lô's ton
 
 ### Tone Key Mapping
 
-| Key | Tone     | Example | Result |
-| --- | -------- | ------- | ------ |
-| v   | 2nd tone | tev     | té     |
-| y   | 3rd tone | khooy   | khòo   |
-| d   | 5th tone | ladng   | lâng   |
-| w   | 7th tone | phinnw  | phīnn  |
-| x   | 8th tone | titx    | ti̍t    |
-| q   | 9th tone | tsangq  | tsa̋ng  |
+| Key | Tone     | TL Example | TL Result | POJ Example | POJ Result |
+| --- | -------- | ---------- | --------- | ----------- | ---------- |
+| v   | 2nd tone | tev        | té        | hoov        | hó͘         |
+| y   | 3rd tone | khooy      | khòo      | pay         | pà         |
+| d   | 5th tone | langd      | lâng      | kaud        | kâu        |
+| w   | 7th tone | phinnw     | phīnn     | ciunnw      | chhiūⁿ     |
+| x   | 8th tone | titx       | ti̍t       | lokx        | lo̍k        |
+| q   | 9th tone | tsangq     | tsa̋ng     | ianq        | ia̋n        |
 
 ### Additional Function Keys
 
 Since these letters would go unused otherwise, I've repurposed them for additional functions:
 
-| Key | Function       | Example | Result |
-| --- | -------------- | ------- | ------ |
-| z   | Consonant: ts  | zo      | tso    |
-| c   | Consonant: tsh | ci      | tshi   |
-| f   | Hyphen         | taif    | tai-   |
-
-### Usage Examples
-
-- Type `tai[d]` → Shows `tâi`
-- Type `tâi[f]` → Shows `tâi-`
-- Type `tev` → Shows `té`
-- Type `khooy` → Shows `khòo`
-- Type `langd` or `ladng` → Shows `lâng`
+| Key | Function (TL / POJ)   | TL Example | TL Result | POJ Example | POJ Result |
+| --- | --------------------- | ---------- | --------- | ----------- | ---------- |
+| z   | Consonant: ts / ch    | zo         | tso       | zit         | chit       |
+| c   | Consonant: tsh / chh  | ci         | tshi      | coew        | chhōe      |
+| f   | Hyphen                | taif       | tai-      | taif        | tai-       |
+| nn  | Nasal (POJ only)      | -          | -         | sann        | saⁿ        |
+| oo  | Half-nasal (POJ only) | -          | -         | poo         | po͘         |
 
 ## Feedback
 
