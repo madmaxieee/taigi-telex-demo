@@ -4,6 +4,8 @@
 	import { _ } from 'svelte-i18n';
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
 
 	// Combined table data with both TL and POJ examples
@@ -130,9 +132,7 @@
 	// Update URL when mode changes
 	function updateURL(newMode: Mode) {
 		if (!browser) return;
-		const url = new URL(page.url);
-		url.searchParams.set('mode', newMode);
-		window.history.replaceState({}, '', url.toString());
+		goto(resolve(`/?mode=${newMode}`), { replaceState: true });
 	}
 
 	function handleModeChange(newMode: Mode) {
