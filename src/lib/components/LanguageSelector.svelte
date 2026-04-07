@@ -11,7 +11,7 @@
 	<select
 		value={$locale}
 		onchange={handleLanguageChange}
-		class="cursor-pointer appearance-none rounded-lg bg-white/80 px-4 py-2 pr-10 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none"
+		class="cursor-pointer appearance-none rounded-lg bg-white/80 px-4 py-2 pr-10 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white focus:ring-2 focus:ring-(--theme-500) focus:outline-none"
 		aria-label="Select language"
 	>
 		{#each languages as lang (lang.code)}
