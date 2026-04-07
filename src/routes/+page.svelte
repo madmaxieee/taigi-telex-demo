@@ -280,7 +280,7 @@
 					href="https://github.com/madmaxieee/taigi-telex"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center gap-2 rounded-lg bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white hover:text-slate-900 focus:ring-2 focus:ring-[var(--theme-500)] focus:outline-none"
+					class="flex items-center gap-2 rounded-lg bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white hover:text-slate-900 focus:ring-2 focus:ring-(--theme-500) focus:outline-none"
 					aria-label="View on GitHub"
 				>
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -296,7 +296,7 @@
 					href="https://github.com/madmaxieee/taigi-telex/releases/tag/latest"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center gap-2 rounded-lg bg-[var(--theme-600)]/90 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-[var(--theme-600)] focus:ring-2 focus:ring-[var(--theme-500)] focus:outline-none"
+					class="flex items-center gap-2 rounded-lg bg-(--theme-600)/90 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-(--theme-600) focus:ring-2 focus:ring-(--theme-500) focus:outline-none"
 					aria-label={$_('download')}
 				>
 					<svg
@@ -319,7 +319,7 @@
 			</div>
 
 			<h1 class="mb-4 text-4xl font-bold text-slate-800 md:text-5xl lg:text-6xl">
-				<span class="text-[var(--theme-600)]"> Tâi-gí </span>
+				<span class="text-(--theme-600)"> Tâi-gí </span>
 				<span class="text-slate-700">{$_('title').split(' ').slice(1).join(' ')}</span>
 			</h1>
 
@@ -365,7 +365,7 @@
 						<button
 							onclick={copyText}
 							disabled={!inputText && !outputText}
-							class="rounded-lg bg-[var(--theme-100)] px-4 py-2 text-sm font-medium text-[var(--theme-700)] transition-colors hover:bg-[var(--theme-200)] focus:ring-2 focus:ring-[var(--theme-400)] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+							class="rounded-lg bg-(--theme-100) px-4 py-2 text-sm font-medium text-(--theme-700) transition-colors hover:bg-(--theme-200) focus:ring-2 focus:ring-(--theme-400) focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 						>
 							{$_('input.copy')}
 						</button>
@@ -381,11 +381,15 @@
 				<input
 					id="telex-input"
 					type="text"
+					lang="en"
+					autocomplete="off"
+					autocorrect="off"
+					spellcheck="false"
 					bind:this={inputElement}
 					bind:value={inputText}
 					onkeydown={handleKeyDown}
 					placeholder={$_('input.placeholder')}
-					class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-6 py-4 text-xl text-slate-800 placeholder-slate-400 transition-all focus:border-[var(--theme-500)] focus:bg-white focus:ring-4 focus:ring-[var(--theme-500)]/20 focus:outline-none md:text-2xl"
+					class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-6 py-4 text-xl text-slate-800 placeholder-slate-400 transition-all focus:border-(--theme-500) focus:bg-white focus:ring-4 focus:ring-(--theme-500)/20 focus:outline-none md:text-2xl"
 				/>
 			</div>
 		</section>
@@ -597,7 +601,7 @@
 			<p class="mt-2">
 				<a
 					href="mailto:feedback@telex.kahiok.com?subject=feedback"
-					class="text-[var(--theme-600)] hover:text-[var(--theme-700)] hover:underline"
+					class="text-(--theme-600) hover:text-(--theme-700) hover:underline"
 				>
 					feedback@telex.kahiok.com
 				</a>
