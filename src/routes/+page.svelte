@@ -290,7 +290,7 @@
 							clip-rule="evenodd"
 						/>
 					</svg>
-					GitHub
+					<span class="hidden sm:inline">GitHub</span>
 				</a>
 				<a
 					href="https://github.com/madmaxieee/taigi-telex/releases/tag/latest"
