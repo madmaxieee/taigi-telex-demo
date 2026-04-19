@@ -293,7 +293,7 @@
 					<span class="hidden sm:inline">GitHub</span>
 				</a>
 				<a
-					href="https://github.com/madmaxieee/taigi-telex/releases/tag/latest"
+					href="https://github.com/madmaxieee/taigi-telex/releases/latest"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="flex items-center gap-2 rounded-lg bg-(--theme-600)/90 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-(--theme-600) focus:ring-2 focus:ring-(--theme-500) focus:outline-none"
