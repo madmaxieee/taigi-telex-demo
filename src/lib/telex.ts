@@ -25,9 +25,9 @@ const SUPER_SCRIPT_N = '\u207F';
 
 // Vowel priority for tone placement
 // TL: a > e > o > u > i
-// POJ: o͘ > a > e > o > u > i
+// POJ: o > e > a > u > i (o͘ is handled specially at the top of findTonePosition)
 const VOWEL_PRIORITY_TL = ['a', 'e', 'o', 'u', 'i'];
-const VOWEL_PRIORITY_POJ = ['o', 'a', 'e', 'u', 'i']; // o͘ is handled specially
+const VOWEL_PRIORITY_POJ = ['o', 'e', 'a', 'u', 'i'];
 
 // Check if character is a vowel (base form)
 function isVowel(char: string, mode: Mode = 'tl'): boolean {
@@ -61,6 +61,7 @@ function findExistingTonePosition(syllable: string): number {
 // Find the position where tone should be placed within a syllable
 function findTonePosition(syllable: string, mode: Mode = 'tl'): number {
 	const chars = [...syllable]; // Use spread for proper Unicode handling
+	const lower = syllable.toLowerCase();
 
 	// POJ mode: o͘ has highest priority
 	if (mode === 'poj') {
@@ -70,22 +71,37 @@ function findTonePosition(syllable: string, mode: Mode = 'tl'): number {
 			}
 		}
 
-		// Handle POJ-specific exceptions: eo -> mark on e, oe -> mark on o
-		for (let i = 0; i < chars.length - 1; i++) {
-			const char1 = chars[i].toLowerCase();
-			const char2 = chars[i + 1].toLowerCase();
-
-			// 'eo' - mark goes on 'e'
-			if (char1 === 'e' && char2 === 'o') {
-				if (!hasToneMark(chars[i])) {
-					return i;
-				}
+		// Handle POJ-specific exceptions based on cluster content and following suffix
+		// oai (full vowel cluster) → mark on a
+		if (lower.includes('oai')) {
+			const idx = lower.indexOf('oai');
+			if (idx >= 0 && !hasToneMark(chars[idx + 1])) {
+				return idx + 1;
 			}
-			// 'oe' - mark goes on 'o'
-			if (char1 === 'o' && char2 === 'e') {
-				if (!hasToneMark(chars[i])) {
-					return i;
-				}
+		}
+		// oan, oat, oah → mark on a
+		if (lower.includes('oa')) {
+			const idx = lower.indexOf('oa');
+			const afterOa = lower.slice(idx + 2);
+			if (
+				(afterOa.startsWith('n') || afterOa.startsWith('t') || afterOa.startsWith('h')) &&
+				!hasToneMark(chars[idx + 1])
+			) {
+				return idx + 1;
+			}
+		}
+		// oang → mark on o (not a, unlike oan/oat/oah)
+		if (lower.includes('oang')) {
+			const idx = lower.indexOf('oang');
+			if (idx >= 0 && !hasToneMark(chars[idx])) {
+				return idx;
+			}
+		}
+		// oeh → mark on e
+		if (lower.includes('oeh')) {
+			const idx = lower.indexOf('oeh');
+			if (idx >= 0 && !hasToneMark(chars[idx + 1])) {
+				return idx + 1;
 			}
 		}
 	}
