@@ -201,13 +201,21 @@ function processConsonants(text: string, mode: Mode = 'tl'): string {
 		const lowerChar = char.toLowerCase();
 
 		if (lowerChar === 'z') {
-			if (mode === 'poj') {
+			// Don't replace if already part of zh (from prior transformation)
+			const nextChar = chars[i + 1]?.toLowerCase();
+			if (nextChar === 'h') {
+				result += char;
+			} else if (mode === 'poj') {
 				result += char === 'Z' ? 'Ch' : 'ch';
 			} else {
 				result += char === 'Z' ? 'Ts' : 'ts';
 			}
 		} else if (lowerChar === 'c') {
-			if (mode === 'poj') {
+			// Don't replace if already part of ch/chh (from prior z→ch or c→chh transformation)
+			const nextChar = chars[i + 1]?.toLowerCase();
+			if (nextChar === 'h') {
+				result += char;
+			} else if (mode === 'poj') {
 				result += char === 'C' ? 'Chh' : 'chh';
 			} else {
 				result += char === 'C' ? 'Tsh' : 'tsh';
