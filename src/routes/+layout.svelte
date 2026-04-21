@@ -7,7 +7,24 @@
 </script>
 
 <svelte:head>
-	<title>Tâi-gí Telex Su-ji̍p-huat</title>
+	<title>Tâi-gí Telex 輸入法線上體驗</title>
+	<meta
+		name="description"
+		content="Tâi-gí Telex 是一款類 Telex 聲調輸入法，支援台羅拼音（TL）與白話字（POJ）。線上即時體驗，或下載 macOS 版本使用。"
+	/>
+	<meta name="keywords" content="台語輸入法,台羅拼音,白話字,Telex輸入法,Tâi-lô,POJ,台語" />
+	<link rel="canonical" href="https://telex.kahiok.com/" />
+	<link rel="alternate" hreflang="zh-TW" href="https://telex.kahiok.com/" />
+	<link rel="alternate" hreflang="en" href="https://telex.kahiok.com/?locale=en" />
+	<link rel="alternate" hreflang="nan" href="https://telex.kahiok.com/?locale=nan" />
+	<meta property="og:locale" content="zh_TW" />
+	<meta property="og:title" content="Tâi-gí Telex 輸入法 — 台羅、白話字線上體驗" />
+	<meta
+		property="og:description"
+		content="Tâi-gí Telex 是一款類 Telex 聲調輸入法，支援台羅拼音（TL）與白話字（POJ）。線上即時體驗，或下載 macOS 版本使用。"
+	/>
+	<meta property="og:url" content="https://telex.kahiok.com/" />
+	<meta property="og:type" content="website" />
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
