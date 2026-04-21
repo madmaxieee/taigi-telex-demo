@@ -2,7 +2,7 @@
 
 export type Mode = 'tl' | 'poj';
 
-// Taiwanese tone marks mapping
+// Taiwanese tone marks mapping (shared between modes)
 // Key -> combining character(s) for the tone
 const TONE_MARKS: Record<string, string> = {
 	v: '\u0301', // combining acute (2nd tone)
@@ -10,12 +10,30 @@ const TONE_MARKS: Record<string, string> = {
 	d: '\u0302', // combining circumflex (5th tone)
 	w: '\u0304', // combining macron (7th tone)
 	x: '\u030D', // combining vertical line (8th tone)
-	q: '\u030B' // combining double acute (9th tone)
 };
+
+// 9th tone differs between modes:
+// TL: double acute (U+030B) → a̋
+// POJ: breve (U+0306) → ă
+const TONE_9_TL = '\u030B';
+const TONE_9_POJ = '\u0306';
+
+// Get the combining mark for a tone key, accounting for mode differences
+function getToneMark(toneKey: string, mode: Mode = 'tl'): string {
+	if (toneKey === 'q') {
+		return mode === 'poj' ? TONE_9_POJ : TONE_9_TL;
+	}
+	return TONE_MARKS[toneKey] ?? '';
+}
+
+// Check if a character is a tone key
+function isToneKey(char: string): boolean {
+	return char in TONE_MARKS || char === 'q';
+}
 
 // All combining tone marks for detection
 // Note: \u0358 (combining dot above right for POJ o͘) is excluded
-const ALL_TONE_MARKS_REGEX = /[\u0300-\u0357\u0359-\u036f\u0301\u0300\u0302\u0304\u030D\u030B]/g;
+const ALL_TONE_MARKS_REGEX = /[\u0300-\u0357\u0359-\u036f\u0301\u0300\u0302\u0304\u030D\u030B\u0306]/g;
 
 // Combining dot above right for POJ o͘
 const COMBINING_DOT_ABOVE_RIGHT = '\u0358';
@@ -178,8 +196,8 @@ function hasToneMark(char: string): boolean {
 }
 
 // Apply tone mark to a character
-function applyToneMark(char: string, toneKey: string): string {
-	const combiningMark = TONE_MARKS[toneKey];
+function applyToneMark(char: string, toneKey: string, mode: Mode = 'tl'): string {
+	const combiningMark = getToneMark(toneKey, mode);
 	if (!combiningMark) return char;
 
 	// Remove any existing tone marks first
@@ -356,7 +374,7 @@ function transformSyllable(
 
 	// Check for tone keys at the end of the syllable
 	const lastChar = result.slice(-1);
-	if (lastChar in TONE_MARKS) {
+	if (isToneKey(lastChar)) {
 		const toneKey = lastChar;
 		const base = result.slice(0, -1);
 
@@ -366,7 +384,7 @@ function transformSyllable(
 		if (existingTonePos !== -1) {
 			// Replace existing tone with new one
 			const chars = [...base];
-			chars[existingTonePos] = applyToneMark(chars[existingTonePos], toneKey);
+			chars[existingTonePos] = applyToneMark(chars[existingTonePos], toneKey, mode);
 			result = chars.join('');
 			return { result, consumed: true };
 		} else {
@@ -374,7 +392,7 @@ function transformSyllable(
 			const pos = findTonePosition(base, mode);
 			if (pos !== -1) {
 				const chars = [...base];
-				chars[pos] = applyToneMark(chars[pos], toneKey);
+				chars[pos] = applyToneMark(chars[pos], toneKey, mode);
 				result = chars.join('');
 				return { result, consumed: true };
 			}
@@ -390,7 +408,7 @@ function transformSyllable(
 		const current = transformed[i];
 		const next = transformed[i + 1];
 
-		if (isVowel(getBaseVowel(current), mode) && next in TONE_MARKS) {
+		if (isVowel(getBaseVowel(current), mode) && isToneKey(next)) {
 			const toneKey = next;
 
 			// Check if there's already a tone somewhere in the syllable
@@ -402,7 +420,7 @@ function transformSyllable(
 				// Remove old tone
 				chars[existingTonePos] = getBaseVowel(chars[existingTonePos]);
 				// Apply new tone to current vowel
-				chars[i] = applyToneMark(chars[i], toneKey);
+				chars[i] = applyToneMark(chars[i], toneKey, mode);
 				// Remove the tone key
 				chars.splice(i + 1, 1);
 				transformed = chars.join('');
@@ -410,7 +428,7 @@ function transformSyllable(
 			} else if (existingTonePos === i) {
 				// Current vowel already has a tone - replace it
 				const chars = [...transformed];
-				chars[i] = applyToneMark(chars[i], toneKey);
+				chars[i] = applyToneMark(chars[i], toneKey, mode);
 				// Remove the tone key
 				chars.splice(i + 1, 1);
 				transformed = chars.join('');
@@ -418,7 +436,7 @@ function transformSyllable(
 			} else {
 				// No existing tone - apply new one
 				const chars = [...transformed];
-				chars[i] = applyToneMark(chars[i], toneKey);
+				chars[i] = applyToneMark(chars[i], toneKey, mode);
 				// Remove the tone key
 				chars.splice(i + 1, 1);
 				transformed = chars.join('');
