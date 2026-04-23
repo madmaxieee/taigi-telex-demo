@@ -9,7 +9,7 @@ const TONE_MARKS: Record<string, string> = {
 	y: '\u0300', // combining grave (3rd tone)
 	d: '\u0302', // combining circumflex (5th tone)
 	w: '\u0304', // combining macron (7th tone)
-	x: '\u030D', // combining vertical line (8th tone)
+	x: '\u030D' // combining vertical line (8th tone)
 };
 
 // 9th tone differs between modes:
@@ -33,7 +33,8 @@ function isToneKey(char: string): boolean {
 
 // All combining tone marks for detection
 // Note: \u0358 (combining dot above right for POJ o͘) is excluded
-const ALL_TONE_MARKS_REGEX = /[\u0300-\u0357\u0359-\u036f\u0301\u0300\u0302\u0304\u030D\u030B\u0306]/g;
+const ALL_TONE_MARKS_REGEX =
+	/[\u0300-\u0357\u0359-\u036f\u0301\u0300\u0302\u0304\u030D\u030B\u0306]/g;
 
 // Combining dot above right for POJ o͘
 const COMBINING_DOT_ABOVE_RIGHT = '\u0358';
